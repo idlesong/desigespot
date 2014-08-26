@@ -1,0 +1,88 @@
+<div class="jumbotron">
+  <img src="/assets/designer_demo.png" alt="designer_icon">
+  <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+  <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+</div>
+
+
+<a href="#">近期案例</a>
+
+<div class="row">
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <img src="/assets/design_demo.png" alt="img1">
+      <div class="caption">
+        <h3>子昂雅苑二期</h3>
+        <p>上海嘉定-两房一厅</p>
+        <p><a href="#">孙立平</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <img src="/assets/design_demo.png" alt="img1">
+      <div class="caption">
+        <h3>子昂雅苑二期</h3>
+        <p>上海嘉定-两房一厅</p>
+        <p><a href="#">孙立平</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <img src="/assets/design_demo.png" alt="img1">
+      <div class="caption">
+        <h3>子昂雅苑二期</h3>
+        <p>上海嘉定-两房一厅</p>
+        <p><a href="#">孙立平</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <img src="/assets/design_demo.png" alt="img1">
+      <div class="caption">
+        <h3>子昂雅苑二期</h3>
+        <p>上海嘉定-两房一厅</p>
+        <p><a href="#">孙立平</a></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @designer.name %>
+</p>
+
+<p>
+  <strong>Sex:</strong>
+  <%= @designer.sex %>
+</p>
+
+<p>
+  <strong>Prefer style:</strong>
+  <%= @designer.prefer_style %>
+</p>
+
+<p>
+  <strong>Prefer household:</strong>
+  <%= @designer.prefer_household %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @designer.photo %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @designer.location %>
+</p>
+
+<%= link_to 'Edit', edit_designer_path(@designer) %> |
+<%= link_to 'Back', designers_path %>
