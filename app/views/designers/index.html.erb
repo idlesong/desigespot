@@ -5,116 +5,48 @@
 </div>
 
 
+<% @designers.each do |designer| %>
+  <div class="row">
+    <div class="col-xs-6 col-md-2">
+      <div class="thumbnail">
+        <%= link_to  designer do %>
+          <%= image_tag("designer_demo.png", :alt => "show", :class => "show") %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <p><%= designer.name %> 已认证</p>
+          <p>擅长空间-<%= designer.prefer_household %></p>
+          <p>擅长风格-<%= designer.prefer_style %></p>
+          <p>关注，作品：313</p>
+        </div>
+        <img src="assets/follow.png" alt="img1">
+      </div>
+    </div>
+
+    <div class="col-xs-6 col-md-2">
+      <a href="#" class="thumbnail">
+        <img src="assets/design_demo.png" alt="designer">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-2">
+      <a href="#" class="thumbnail">
+        <img src="assets/design_demo.png" alt="designer">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-2">
+      <a href="#" class="thumbnail">
+        <img src="assets/design_demo.png" alt="designer">
+      </a>
+    </div>
+  </div>
+<% end %>
+
+
 <h1>Listing designers</h1>
-
-<div class="row">
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/designer_demo.png" alt="designer">
-    </a>
-  </div>
-
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <p>孙立平 已认证</p>
-        <p>擅长空间-两房一厅</p>
-        <p>擅长风格-中式，欧式</p>
-        <p>关注，作品：313</p>
-      </div>
-      <img src="assets/follow.png" alt="img1">
-    </div>
-  </div>
-
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/design_demo.png" alt="designer">
-    </a>
-  </div>
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/design_demo.png" alt="designer">
-    </a>
-  </div>
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/design_demo.png" alt="designer">
-    </a>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/designer_demo.png" alt="designer">
-    </a>
-  </div>
-
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <p>孙立平 已认证</p>
-        <p>擅长空间-两房一厅</p>
-        <p>擅长风格-中式，欧式</p>
-        <p>关注，作品：313</p>
-      </div>
-      <img src="assets/follow.png" alt="img1">
-    </div>
-  </div>
-
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/design_demo.png" alt="designer">
-    </a>
-  </div>
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/design_demo.png" alt="designer">
-    </a>
-  </div>
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/design_demo.png" alt="designer">
-    </a>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/designer_demo.png" alt="designer">
-    </a>
-  </div>
-
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <p>孙立平 已认证</p>
-        <p>擅长空间-两房一厅</p>
-        <p>擅长风格-中式，欧式</p>
-        <p>关注，作品：313</p>
-      </div>
-      <img src="assets/follow.png" alt="img1">
-    </div>
-  </div>
-
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/design_demo.png" alt="designer">
-    </a>
-  </div>
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/design_demo.png" alt="designer">
-    </a>
-  </div>
-  <div class="col-xs-6 col-md-2">
-    <a href="#" class="thumbnail">
-      <img src="assets/design_demo.png" alt="designer">
-    </a>
-  </div>
-</div>
-
 
 <table>
   <thead>

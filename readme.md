@@ -1,31 +1,9 @@
+### schema
+design has_many photos
+photo image description label belongs_to design
 
-<div id="topInfo">
-  <ul class="navigation">
-    <li class="edit"><a>设计</a></li>
-    <li class="edit"><a>家装</a></li>
-    <li class="edit"><a>免费注册</a></li>
-    <li class="edit"><a>登录</a></li>
-  </ul>
+商城产品为模型的设计交流指导，这个可以作为主要卖点。
 
-  <form class="search" action="about.html">
-    <input type="text"></input>
-    <input id="submit" type="submit" value=""></input>
-  </form>
-</div>
-
-<div id="headerInfo">
-  <div>
-    <a id="logo" href="index.html"><img alt="logo" src="images/logo.png"></img></a>
-    <div class="navigation">
-      <ul class="first">
-        <li class="first"> <a href="#"> 设计首页 </a> </li>
-        <li class="first"> <a href="#"> 设计首页 </a> </li>
-        <li class="first"> <a href="#"> 设计首页 </a> </li>
-        <li class="first"> <a href="#"> 设计首页 </a> </li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-
-<%= yield %>
+如何选，如何配出各种风格是最主要的需求；算出成本。
+效果图直接链接到商城产品如何？直接算出预算？
+软装素材中的经典案例，直接链接到

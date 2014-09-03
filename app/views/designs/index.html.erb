@@ -46,10 +46,17 @@
 
 <a href="#">默认</a> <a href="#">人气最高</a> <a href="#">最新上传</a>
 
-<div class="row">
+
+<% i=0 %>
+<% @designs.each do |design| %>
+  <% if i % 4 == 0 %> <div class="row"> <% end %>
+
   <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-      <img src="assets/design_demo.png" alt="img1">
+      <%= link_to  design do %>
+        <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+      <% end %>
+
       <div class="caption">
         <h3>子昂雅苑二期</h3>
         <p>上海嘉定-两房一厅</p>
@@ -58,83 +65,9 @@
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="row">
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div> 
-  </div>
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div>
-  </div>
-
-</div>
+  <% if ((i % 4 == 3) ) %>  </div> <% end %>
+  <% i += 1 %>
+<% end %>
 
 <h1>Listing designs</h1>
 
