@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  resources :comments
+
   resources :requests
 
-  resources :designs
+  resources :designs do
+      resources :comments
+  end
 
   resources :designers
 
