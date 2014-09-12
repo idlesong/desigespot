@@ -1,7 +1,29 @@
 <div class="jumbotron">
-  <img src="/assets/designer_demo.png" alt="designer_icon">
-  <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-  <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+
+  <%= image_tag @designer.avatar.url(:medium) %>
+  <p>
+    <strong>Name:</strong>
+    <%= @designer.name %>
+
+    <strong>Sex:</strong>
+    <%= @designer.sex %>
+
+
+    <strong>Location:</strong>
+    <%= @designer.location %>
+
+  </p>
+
+  <p>
+    <strong>Prefer style:</strong>
+    <%= @designer.prefer_style %>
+
+    <strong>Prefer household:</strong>
+    <%= @designer.prefer_household %>
+
+    <%= link_to 'Edit', edit_designer_path(@designer) %>
+  </p>
+
 </div>
 
 
@@ -57,9 +79,7 @@
 <p>
   <strong>Name:</strong>
   <%= @designer.name %>
-</p>
 
-<p>
   <strong>Sex:</strong>
   <%= @designer.sex %>
 </p>
@@ -86,3 +106,33 @@
 
 <%= link_to 'Edit', edit_designer_path(@designer) %> |
 <%= link_to 'Back', designers_path %>
+
+<%= form_for([@designer, @designer.designs.build], :html => { :multipart => true }) do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :stage %><br>
+    <%= f.text_field :stage %>
+  </div>
+  <div class="field">
+    <%= f.label :style %><br>
+    <%= f.text_field :style %>
+  </div>
+  <div class="field">
+    <%= f.label :household %><br>
+    <%= f.text_field :household %>
+  </div>
+  <div class="field">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.file_field :pic %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

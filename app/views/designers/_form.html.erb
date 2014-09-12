@@ -1,4 +1,4 @@
-<%= form_for(@designer) do |f| %>
+<%= form_for(@designer, :url => designer_path, :html => { :multipart => true }) do |f| %>
   <% if @designer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@designer.errors.count, "error") %> prohibited this designer from being saved:</h2>
@@ -34,6 +34,9 @@
   <div class="field">
     <%= f.label :location %><br>
     <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.file_field :avatar %>
   </div>
   <div class="actions">
     <%= f.submit %>

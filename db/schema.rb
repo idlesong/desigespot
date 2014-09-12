@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905031536) do
+ActiveRecord::Schema.define(version: 20140905091102) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -44,6 +44,11 @@ ActiveRecord::Schema.define(version: 20140905031536) do
     t.string   "author"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
+    t.integer  "designer_id"
   end
 
   create_table "requests", force: true do |t|

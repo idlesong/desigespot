@@ -24,11 +24,14 @@ class DesignsController < ApplicationController
   # POST /designs
   # POST /designs.json
   def create
-    @design = Design.new(design_params)
+    #@design = Design.new(design_params)
+
+    @designer = Designer.find(params[:designer_id])
+    @design = @designer.designs.create(design_params)
 
     respond_to do |format|
       if @design.save
-        format.html { redirect_to @design, notice: 'Design was successfully created.' }
+        format.html { redirect_to designer_path(@designer), notice: 'Design was successfully created.' }
         format.json { render :show, status: :created, location: @design }
       else
         format.html { render :new }
@@ -69,6 +72,6 @@ class DesignsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def design_params
-      params.require(:design).permit(:name, :stage, :style, :household, :author)
+      params.require(:design).permit(:name, :stage, :style, :household, :author, :pic)
     end
 end

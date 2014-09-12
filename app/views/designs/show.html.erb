@@ -25,6 +25,9 @@
   <%= @design.author %>
 </p>
 
+<%= image_tag @design.pic.url %>
+</br>
+
 <%= link_to 'Edit', edit_design_path(@design) %> |
 <%= link_to 'Back', designs_path %>
 
