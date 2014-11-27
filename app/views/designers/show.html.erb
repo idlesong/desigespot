@@ -22,57 +22,35 @@
     <%= @designer.prefer_household %>
 
     <%= link_to 'Edit', edit_designer_path(@designer) %>
+    <%= link_to 'New Design', new_design_path([@designer, @designer.designs.build]) %>
   </p>
 
 </div>
 
-
 <a href="#">近期案例</a>
 
-<div class="row">
+<% i=0 %>
+<% @designer.designs.each do |design| %>
+<% if i % 4 == 0 %> <div class="row"> <% end %>
+
   <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-      <img src="/assets/design_demo.png" alt="img1">
+      <%= link_to  design do %>
+      <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+      <% end %>
+
       <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
+        <h3><%= design.name %></h3>
+        <p>上海嘉定-<%= design.household %></p>
+        <p><a href="#"><%= @designer.name %></a></p>
       </div>
     </div>
   </div>
 
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="/assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="/assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="/assets/design_demo.png" alt="img1">
-      <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
-      </div>
-    </div>
-  </div>
+  <% if ((i % 4 == 3) ) %>  </div> <% end %>
+  <% i += 1 %>
+<% end %>
 
-</div>
 
 <p id="notice"><%= notice %></p>
 
@@ -106,6 +84,8 @@
 
 <%= link_to 'Edit', edit_designer_path(@designer) %> |
 <%= link_to 'Back', designers_path %>
+
+
 
 <%= form_for([@designer, @designer.designs.build], :html => { :multipart => true }) do |f| %>
 
