@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905091102) do
+ActiveRecord::Schema.define(version: 20141202013914) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140905091102) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "password_digest"
   end
 
   create_table "designs", force: true do |t|
@@ -51,12 +52,28 @@ ActiveRecord::Schema.define(version: 20140905091102) do
     t.integer  "designer_id"
   end
 
+  create_table "replies", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "topic_id"
+    t.integer  "designer_id"
+  end
+
   create_table "requests", force: true do |t|
     t.string   "name"
     t.string   "graph2d"
     t.string   "response"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "topics", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "designer_id"
   end
 
 end

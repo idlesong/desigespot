@@ -2,6 +2,12 @@ require 'test_helper'
 
 class DesignersControllerTest < ActionController::TestCase
   setup do
+    @input_attributes = {
+      name:   "sam"
+      password:               "private"
+      password_confirmation:  "private"
+    }
+
     @designer = designers(:one)
   end
 
@@ -18,10 +24,16 @@ class DesignersControllerTest < ActionController::TestCase
 
   test "should create designer" do
     assert_difference('Designer.count') do
-      post :create, designer: { location: @designer.location, name: @designer.name, photo: @designer.photo, prefer_household: @designer.prefer_household, prefer_style: @designer.prefer_style, sex: @designer.sex }
+      post :create, designer: @input_attributes
+      #post :create, designer: { location: @designer.location, name: @designer.name, photo: @designer.photo, prefer_household: @designer.prefer_household, prefer_style: @designer.prefer_style, sex: @designer.sex }
     end
 
     assert_redirected_to designer_path(assigns(:designer))
+  end
+
+  test "should update user" do
+    put :update, id: @designer, designer: input_attributes
+    assert_redirected_to designers_path
   end
 
   test "should show designer" do

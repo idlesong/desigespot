@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @topic.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @topic.content %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @topic.replies.each do |reply| %>
+    <tr>
+      <td><%= reply.content %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit',  edit_topic_path(@topic) %> |
+<%= link_to 'Back',  topics_path %> |
+<%= link_to 'reply', new_topic_reply_path(@topic) %>
