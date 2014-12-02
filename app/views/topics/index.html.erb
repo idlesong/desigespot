@@ -1,3 +1,4 @@
+<!--
 <h1>Listing topics</h1>
 
 <table>
@@ -21,7 +22,21 @@
     <% end %>
   </tbody>
 </table>
-
+-->
 <br>
+
+<% @topics.each do |topic| %>
+<div class="bg-success">
+<p> <%= image_tag topic.designer.avatar.url(:thumbnail) %>
+
+  <%= topic.designer.name %>
+  <i class="fa fa-pencil"></i><%= topic.updated_at %>
+</p>
+<p>
+  <%= link_to topic.title, topic %> <span class="badge"><%= topic.replies.count %></span>
+</p>
+
+</div>
+<% end %>
 
 <%= link_to 'New Topic', new_topic_path %>

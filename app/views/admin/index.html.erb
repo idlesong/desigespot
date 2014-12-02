@@ -1,2 +1,79 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<div class="jumbotron">
+
+  <%= image_tag @designer.avatar.url(:medium) %>
+  <p>
+    <strong>Name:</strong>
+    <%= @designer.name %>
+
+    <strong>Sex:</strong>
+    <%= @designer.sex %>
+
+
+    <strong>Location:</strong>
+    <%= @designer.location %>
+
+  </p>
+
+  <p>
+    <strong>Prefer style:</strong>
+    <%= @designer.prefer_style %>
+
+    <strong>Prefer household:</strong>
+    <%= @designer.prefer_household %>
+
+    <%= link_to 'Edit', edit_designer_path(@designer) %>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+      <i class="fa fa-cloud-upload"></i>上传作品
+    </button>
+  </p>
+
+</div>
+
+<a href="#">近期案例</a>
+
+<% i=0 %>
+<% @designer.designs.each do |design| %>
+<% if i % 4 == 0 %> <div class="row"> <% end %>
+
+<div class="col-sm-6 col-md-3">
+  <div class="thumbnail">
+    <%= link_to  design do %>
+    <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+    <% end %>
+
+    <div class="caption">
+      <h3><%= design.name %></h3>
+      <p>上海嘉定-<%= design.household %></p>
+      <p><a href="#"><%= @designer.name %></a></p>
+    </div>
+  </div>
+</div>
+
+<% if ((i % 4 == 3) ) %>  </div> <% end %>
+<% i += 1 %>
+<% end %>
+
+<a href="#">近期话题</a>
+
+<p id="notice"><%= notice %></p>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">上传作品</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'shared/design_form', designer: @designer %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

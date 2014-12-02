@@ -1,0 +1,29 @@
+<%= form_for([@designer, @designer.designs.build], :html => { :multipart => true }) do |f| %>
+
+<div class="field">
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :stage %><br>
+  <%= f.text_field :stage %>
+</div>
+<div class="field">
+  <%= f.label :style %><br>
+  <%= f.text_field :style %>
+</div>
+<div class="field">
+  <%= f.label :household %><br>
+  <%= f.text_field :household %>
+</div>
+<div class="field">
+  <%= f.label :author %><br>
+  <%= f.text_field :author %>
+</div>
+<div class="field">
+  <%= f.file_field :pic %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

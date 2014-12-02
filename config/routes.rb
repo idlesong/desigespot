@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  #get 'admin/index'
   get 'admin' => 'admin#index'
 
   controller :sessions do
@@ -30,6 +29,7 @@ Rails.application.routes.draw do
       resources :designs
   end
 
+  root to: 'admin#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

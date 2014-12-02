@@ -1,32 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @topic.title %>
-</p>
+<h3><%= @topic.title %></h3>
+<hr>
 
-<p>
-  <strong>Content:</strong>
+<div>
+  <p>
+  <%= image_tag @topic.designer.avatar.url(:thumbnail) %>
+  <%= @topic.designer.name %>
+  <%= @topic.updated_at %>
+  </p>
+  <p>
   <%= @topic.content %>
-</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%= link_to 'Edit',  edit_topic_path(@topic) %> |
+  <%= link_to 'Back',  topics_path %> |
+  <%= link_to 'reply', new_topic_reply_path(@topic) %>
+  </p>
+</div>
 
-  <tbody>
+
     <% @topic.replies.each do |reply| %>
-    <tr>
-      <td><%= reply.content %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+    <hr>
+    <div>
+      <p><%= image_tag reply.designer.avatar.url(:thumbnail)  %>
+          <%= reply.designer.name %>
 
-<%= link_to 'Edit',  edit_topic_path(@topic) %> |
-<%= link_to 'Back',  topics_path %> |
-<%= link_to 'reply', new_topic_reply_path(@topic) %>
+          <i class="fa fa-pencil"></i>
+          <%= reply.updated_at %><i class="fa fa-heart"></i><i class="fa fa-mail-reply"></i>
+      </p>
+      <p><%= reply.content %></p>
+    </div>
+    <% end %>
