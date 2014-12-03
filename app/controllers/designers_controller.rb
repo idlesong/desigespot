@@ -1,4 +1,5 @@
 class DesignersController < ApplicationController
+  skip_before_filter :authorize
   before_action :set_designer, only: [:show, :edit, :update, :destroy]
 
   # GET /designers
