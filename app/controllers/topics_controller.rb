@@ -5,12 +5,13 @@ class TopicsController < ApplicationController
   # GET /topics.json
   def index
     @topics = Topic.all
+    @designer = Designer.find(session[:designer_id])
   end
 
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @admin = Designer.find(session[:designer_id]) 
+    @admin = Designer.find(session[:designer_id])
   end
 
   # GET /topics/new

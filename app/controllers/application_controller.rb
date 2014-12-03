@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
       unless Designer.find_by_id(session[:designer_id])
         redirect_to login_url, notice: "Please log in"
       end
+
+      @current_designer = Designer.find_by_id(session[:designer_id])
     end
 
   protect_from_forgery with: :exception

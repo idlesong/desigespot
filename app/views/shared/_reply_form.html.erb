@@ -1,0 +1,10 @@
+<%= form_for([@topic, @topic.replies.build], :html => { :multipart => true }) do |f| %>
+
+<div class="field">
+  <%= f.label :回复帖子 %><br>
+  <%= f.text_area :content %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

@@ -1,63 +1,65 @@
-<div class="jumbotron">
+<div class="row">
+  <div class="col-xs-6 col-md-9">
 
-  <%= image_tag @designer.avatar.url(:medium) %>
-  <p>
-    <strong>Name:</strong>
-    <%= @designer.name %>
+    <div class="bg-success">
+      <%= image_tag @designer.avatar.url(:medium) %>
+      <ul>
+        <li>姓名: <%= @designer.name %></li>
+        <li>擅长户型：<%= @designer.prefer_household %></li>
+        <li>风格：<%= @designer.prefer_style %></li>
+        <li>城市：<%= @designer.location %></li>
+        <li>签名：热爱设计，享受生活</li>
+        <li>注册日期: <%= @designer.created_at %>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+            <i class="fa fa-cloud-upload"></i>上传作品
+          </button>
+        </li>
+      </ul>
+    </div>
 
-    <strong>Sex:</strong>
-    <%= @designer.sex %>
+    <p id="notice"><%= notice %></p>
 
+    <a href="#">我的话题</a>
+    <hr>
+    <% @designer.topics.each do |topic| %>
+    <div class="">
+      <p> <%= image_tag topic.designer.avatar.url(:thumbnail) %>
 
-    <strong>Location:</strong>
-    <%= @designer.location %>
+        <%= topic.designer.name %>
+        <i class="fa fa-pencil"></i><%= topic.updated_at %>
+      </p>
+      <p>
+        <%= link_to topic.title, topic %> <span class="badge"><%= topic.replies.count %></span>
+      </p>
 
-  </p>
-
-  <p>
-    <strong>Prefer style:</strong>
-    <%= @designer.prefer_style %>
-
-    <strong>Prefer household:</strong>
-    <%= @designer.prefer_household %>
-
-    <%= link_to 'Edit', edit_designer_path(@designer) %>
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-      <i class="fa fa-cloud-upload"></i>上传作品
-    </button>
-  </p>
-
-</div>
-
-<a href="#">近期案例</a>
-
-<% i=0 %>
-<% @designer.designs.each do |design| %>
-<% if i % 4 == 0 %> <div class="row"> <% end %>
-
-<div class="col-sm-6 col-md-3">
-  <div class="thumbnail">
-    <%= link_to  design do %>
-    <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+    </div>
     <% end %>
 
-    <div class="caption">
-      <h3><%= design.name %></h3>
-      <p>上海嘉定-<%= design.household %></p>
-      <p><a href="#"><%= @designer.name %></a></p>
-    </div>
   </div>
+  <div class="col-xs-6 col-md-3">
+    <a href="#">我的设计</a>
+    <% i=0 %>
+    <% @designer.designs.each do |design| %>
+    <% if i % 3 == 0 %> <div class="row"> <% end %>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <%= link_to  design do %>
+          <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+          <% end %>
+        </div>
+      </div>
+
+      <% if ((i % 3 == 2) ) %>  </div> <% end %>
+      <% i += 1 %>
+      <% end %>
+    </div>
+
+  <% if @designer.designs.count % 3 != 0 %> </div> <% end %>
+
 </div>
 
-<% if ((i % 4 == 3) ) %>  </div> <% end %>
-<% i += 1 %>
-<% end %>
-
-<a href="#">近期话题</a>
-
-<p id="notice"><%= notice %></p>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

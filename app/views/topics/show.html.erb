@@ -1,28 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-xs-6 col-md-9">
 
-<h3><%= @topic.title %></h3>
-<hr>
+    <p id="notice"><%= notice %></p>
 
-<div>
-  <p>
-  <%= image_tag @topic.designer.avatar.url(:thumbnail) %>
-  <%= @topic.designer.name %>
-  <%= @topic.updated_at %>
-  </p>
-  <p>
-  <%= @topic.content %>
+    <h3><%= @topic.title %></h3>
+    <hr>
 
-  <%= link_to 'Edit',  edit_topic_path(@topic) %> |
-  <%= link_to 'Back',  topics_path %> |
-  <%= link_to 'reply', new_topic_reply_path(@topic) %>
-  </p>
-</div>
+    <div>
+      <p>
+      <%= link_to(image_tag(@topic.designer.avatar.url(:thumbnail)), @topic.designer) %>
+      <%= @topic.designer.name %>
+      <%= @topic.updated_at %>
+      </p>
+      <p>
+      <%= @topic.content %>
 
+      <%= link_to 'Edit',  edit_topic_path(@topic) %>
+      </p>
+    </div>
 
     <% @topic.replies.each do |reply| %>
     <hr>
     <div>
-      <p><%= image_tag reply.designer.avatar.url(:thumbnail)  %>
+      <p><%= link_to(image_tag(reply.designer.avatar.url(:thumbnail)),  reply.designer) %>
           <%= reply.designer.name %>
 
           <i class="fa fa-pencil"></i>
@@ -31,3 +31,28 @@
       <p><%= reply.content %></p>
     </div>
     <% end %>
+
+    <%= render 'shared/reply_form', topic: @topic %>
+  </div>
+
+  <div class="col-xs-6 col-md-3">
+    <a href="#">我的设计</a>
+    <% i=0 %>
+    <% @admin.designs.each do |design| %>
+    <% if i % 3 == 0 %> <div class="row"> <% end %>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <%= link_to  design do %>
+          <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+          <% end %>
+        </div>
+      </div>
+
+      <% if ((i % 3 == 2) ) %>  </div> <% end %>
+      <% i += 1 %>
+      <% end %>
+    </div>
+
+      <% if @admin.designs.count % 3 != 0 %> </div> <% end %>
+</div>

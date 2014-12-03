@@ -1,42 +1,41 @@
-<!--
-<h1>Listing topics</h1>
+<div class="row">
+  <div class="col-xs-6 col-md-9">
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @topics.each do |topic| %>
-      <tr>
-        <td><%= topic.title %></td>
-        <td><%= topic.content %></td>
-        <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="bg-success">
+    <p> <%= link_to(image_tag(topic.designer.avatar.url(:thumbnail)) ,topic.designer)%>
+
+      <%= topic.designer.name %>
+      <i class="fa fa-pencil"></i><%= topic.updated_at %>
+    </p>
+    <p>
+      <%= link_to topic.title, topic %> <span class="badge"><%= topic.replies.count %></span>
+    </p>
+
+    </div>
     <% end %>
-  </tbody>
-</table>
--->
-<br>
 
-<% @topics.each do |topic| %>
-<div class="bg-success">
-<p> <%= image_tag topic.designer.avatar.url(:thumbnail) %>
+    <%= link_to '发布新贴', new_topic_path, :class => 'btn btn-primary' %>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <a href="#">我的设计</a>
+    <% i=0 %>
+    <% @designer.designs.each do |design| %>
+    <% if i % 3 == 0 %> <div class="row"> <% end %>
 
-  <%= topic.designer.name %>
-  <i class="fa fa-pencil"></i><%= topic.updated_at %>
-</p>
-<p>
-  <%= link_to topic.title, topic %> <span class="badge"><%= topic.replies.count %></span>
-</p>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <%= link_to  design do %>
+          <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+          <% end %>
+        </div>
+      </div>
 
+      <% if ((i % 3 == 2) ) %>  </div> <% end %>
+      <% i += 1 %>
+      <% end %>
+    </div>
+
+    <% if @designer.designs.count % 3 != 0 %> </div> <% end %>
+  </div>
 </div>
-<% end %>
-
-<%= link_to 'New Topic', new_topic_path %>
