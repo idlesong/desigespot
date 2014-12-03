@@ -10,14 +10,8 @@ default: &default
   pool: 5
   timeout: 5000
 
-designuse: &default
-  adapter: sqlite3
-  encoding: unicode
-  pool: 5
-  timeout: 5000
-
 development:
-  <<: *designuse
+  <<: *default
   database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
