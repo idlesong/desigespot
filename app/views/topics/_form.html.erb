@@ -10,11 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+<!--
   <div class="field">
     <%= f.label :designer_id %><br>
     <%= f.text_field :designer_id %>
   </div>
+-->
+  <%= f.hidden_field :designer_id, @topic.designer_id  %>
 
   <div class="field">
     <%= f.label :title %><br>

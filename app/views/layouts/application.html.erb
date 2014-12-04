@@ -40,13 +40,13 @@
           <li><a href=<%=topics_path %>>社区</a></li>
           <li>
             <% if session[:designer_id] != nil %>
-            <%= link_to("退出", logout_url, :method => :delete)%>
+            <%= link_to("退出", logout_url, :method => :delete, :class => "pull-right")%>
             <% else %>
-            <%= link_to('登录', login_url) %>
+            <%= link_to('登录', login_url, :class => "pull-right") %>
             <% end %>
           </li>
           <li>
-            <%= link_to('注册', new_designer_url) %>
+            <%= link_to('注册', new_designer_url, :class => "pull-right") %>
           </li>
         </ul>
       </div><!--/.nav-collapse -->
