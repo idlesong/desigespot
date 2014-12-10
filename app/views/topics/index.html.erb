@@ -3,8 +3,8 @@
 
     <% @topics.each do |topic| %>
     <div class="bg-success">
-    <p> <%= link_to(image_tag(topic.designer.avatar.url(:thumbnail)) ,topic.designer)%>
-
+    <p>
+      <%= link_to(image_tag(topic.designer.avatar.url(:thumbnail)) ,topic.designer)%>
       <%= topic.designer.name %>
       <i class="fa fa-pencil"></i><%= topic.updated_at %>
     </p>
@@ -19,23 +19,25 @@
   </div>
   <div class="col-xs-6 col-md-3">
     <a href="#">我的设计</a>
-    <% i=0 %>
-    <% @designer.designs.each do |design| %>
-    <% if i % 3 == 0 %> <div class="row"> <% end %>
+    <% if @designer %>
+      <% i=0 %>
+      <% @designer.designs.each do |design| %>
+      <% if i % 3 == 0 %> <div class="row"> <% end %>
 
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          <%= link_to  design do %>
-          <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
-          <% end %>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <%= link_to  design do %>
+            <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+            <% end %>
+          </div>
         </div>
+
+        <% if ((i % 3 == 2) ) %>  </div> <% end %>
+        <% i += 1 %>
+        <% end %>
       </div>
 
-      <% if ((i % 3 == 2) ) %>  </div> <% end %>
-      <% i += 1 %>
-      <% end %>
-    </div>
-
-    <% if @designer.designs.count % 3 != 0 %> </div> <% end %>
+      <% if @designer.designs.count % 3 != 0 %> </div> <% end %>
+    <% end %>
   </div>
 </div>

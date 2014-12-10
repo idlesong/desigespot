@@ -1,11 +1,15 @@
 class TopicsController < ApplicationController
+  skip_before_filter :authorize
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   # GET /topics
   # GET /topics.json
   def index
     @topics = Topic.all
-    @designer = Designer.find(session[:designer_id])
+    if session[:designer_id]
+      @designer = Designer.find(session[:designer_id])
+    end
+
   end
 
   # GET /topics/1
@@ -17,7 +21,11 @@ class TopicsController < ApplicationController
   # GET /topics/new
   def new
     @topic = Topic.new
-    @topic.designer_id = session[:designer_id]
+    if session[:designer_id] != nil
+      @topic.designer_id = session[:designer_id]
+    else
+      redirect_to admin_url
+    end
   end
 
   # GET /topics/1/edit
