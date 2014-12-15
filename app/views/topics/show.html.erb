@@ -7,52 +7,70 @@
     <hr>
 
     <div>
-      <p>
-      <%= link_to(image_tag(@topic.designer.avatar.url(:thumbnail)), @topic.designer) %>
-      <%= @topic.designer.name %>
-      <%= @topic.updated_at %>
-      </p>
-      <p>
-      <%= @topic.content %>
+      <div>
+        <div class="pull-left">
+          <%= link_to(image_tag(@topic.designer.avatar.url(:thumbnail)), @topic.designer) %>
+        </div>
+        <%= @topic.designer.name %>
+        <%= @topic.updated_at %>
 
-      <%= link_to 'Edit',  edit_topic_path(@topic) %>
-      </p>
+        <div><%= @topic.content %></div>
+
+
+        <% if current_user %>
+          <div id="send_like_for<%= @topic.id %>">
+          <% if current_user.liked?(@topic) %>
+            <span> unlike <span>
+          <% else %>
+            <%= link_to "like", likes_path(:topic_to_be_liked => @topic.id), remote: true, :method => :post %>
+          <% end %>
+          </div>
+
+          <div id="liked_<%= @topic.id%>" %>
+            <%= "#{@topic.likes.length} like this" %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <% @topic.replies.each do |reply| %>
     <hr>
-    <div>
-      <p><%= link_to(image_tag(reply.designer.avatar.url(:thumbnail)),  reply.designer) %>
+    <div class="pull-left face">
+      <%= link_to(image_tag(reply.designer.avatar.url(:thumbnail)),  reply.designer) %>
+    </div>
+    <div >
           <%= reply.designer.name %>
 
           <i class="fa fa-pencil"></i>
-          <%= reply.updated_at %><i class="fa fa-heart"></i><i class="fa fa-mail-reply"></i>
-      </p>
-      <p><%= reply.content %></p>
+          <%= reply.updated_at %>
     </div>
+    <div >  <%= reply.content %> </div>
     <% end %>
 
+    <hr>
     <%= render 'shared/reply_form', topic: @topic %>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="#">我的设计</a>
-    <% i=0 %>
-    <% @admin.designs.each do |design| %>
-    <% if i % 3 == 0 %> <div class="row"> <% end %>
+    <% if current_user %>
+      <% i=0 %>
+      <% current_user.designs.each do |design| %>
+      <% if i % 3 == 0 %> <div class="row"> <% end %>
 
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          <%= link_to  design do %>
-          <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
-          <% end %>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <%= link_to  design do %>
+            <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+            <% end %>
+          </div>
         </div>
+
+        <% if ((i % 3 == 2) ) %>  </div> <% end %>
+        <% i += 1 %>
+        <% end %>
       </div>
 
-      <% if ((i % 3 == 2) ) %>  </div> <% end %>
-      <% i += 1 %>
-      <% end %>
-    </div>
-
-      <% if @admin.designs.count % 3 != 0 %> </div> <% end %>
+      <% if current_user.designs.count % 3 != 0 %> </div> <% end %>
+    <% end %>
 </div>

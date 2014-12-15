@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @admin = Designer.find(session[:designer_id])
+    @designer = Designer.find(session[:designer_id])
   end
 
   # GET /topics/new

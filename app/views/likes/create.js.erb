@@ -1,0 +1,2 @@
+$("#send_like_for_<%= params[:topic_to_be_liked]%>").html("<% escape_javascript(render('topics/unlike'))%>")
+$("#liked_<%= params[topic_to_be_liked]%>").html("<%= escape_javascript(render('topics/liked_users'))%>")
