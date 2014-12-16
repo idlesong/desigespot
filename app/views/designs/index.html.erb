@@ -1,50 +1,47 @@
 <!-- Fixme show-grid should work -->
 <div class="row show-grid">
-  <div class="col-sm-6 col-md-3">
-      <h2> 户型方案 </h2>
-  </div>
 
-  <div class="col-sm-6 col-md-3">
-      <ul class="nav nav-pills">
-        <li><a href="#">一室一厅</a></li>
-        <li><a href="#">两室一厅</a></li>
-        <li><a href="#">两室一厅</a></li>
-      </ul>
-      <ul class="nav nav-pills">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Messages</a></li>
-      </ul>
-      <ul class="nav nav-pills">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Messages</a></li>
-      </ul>
-  </div>
-
-  <div class="col-sm-6 col-md-3">
-    <ul class="nav nav-pills">
-      <li><a href="#">1-50</a></li>
-      <li><a href="#">50-80</a></li>
-      <li><a href="#">80-100</a></li>
-    </ul>
-    <ul class="nav nav-pills">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Messages</a></li>
-    </ul>
-  </div>
-
-  <div class="col-sm-6 col-md-3">
-    <ul class="nav nav-pills">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Messages</a></li>
-    </ul>
-  </div>
+<div>
+  风格
+  <% style_arry = ['欧式','中式','日式','韩式','古典','现代','简约','地中海','宜家'] %>
+  <% style_arry.each do |x| %>
+  <%=  link_to(x, designs_path(:style => x))  %>
+  <% end %>
 </div>
+<hr>
+<div>
+  户型
+  <% household_arry = ['一居','两居','三居','四居','小户型','大户型','别墅','复式','loft','越层','阁楼','工装'] %>
+  <% household_arry.each do |x| %>
+  <%=  link_to(x, designs_path(:household => x))  %>
+  <% end %>
+</div>
+<hr>
+<div>
+  面积
+  <% size_arry = ['<50m2','50-60m2','60-90m2','90-120m2','>120m2'] %>
+  <% size_name = ['50平米以下','50-60平米','60-90平米','90-120平米','120平米以上'] %>
+  <% size_arry.each do |x| %>
+  <%=  link_to(x, designs_path(:stage => x))  %>
+  <% end %>
+
+</div>
+<hr>
 
 <a href="#">默认</a> <a href="#">人气最高</a> <a href="#">最新上传</a>
+<% if not session[:design_style].blank? %>
+  <%= link_to(session[:design_style], designs_path(:style => "")) %>
+<% end %>
+
+<%  if not session[:design_household].blank? %>
+  <%= link_to(session[:design_household], designs_path(:household => "")) %>
+<% end %>
+
+<%  if not session[:design_stage].blank? %>
+  <%= link_to(session[:design_stage], designs_path(:stage => "")) %>
+<% end %>
+
+<%= link_to("清除全部选择", designs_path(:style => "", :household => "",:stage => "")) %>
 
 
 <% i=0 %>
@@ -54,13 +51,13 @@
   <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
       <%= link_to  design do %>
-      <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+      <%= image_tag design.pic.url %>
       <% end %>
 
       <div class="caption">
-        <h3>子昂雅苑二期</h3>
-        <p>上海嘉定-两房一厅</p>
-        <p><a href="#">孙立平</a></p>
+        <h3><%= design.name %></h3>
+        <p>上海嘉定-<%= design.household%></p>
+        <p><%= link_to(design.designer.name, design_path(design)) %></p>
       </div>
     </div>
   </div>

@@ -15,10 +15,33 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
+    <%= f.label "style" %><br>
+    <%= f.select(:style, options_for_select(
+    [['欧式','欧式'],['中式','中式'],['日式','日式'],['韩式','韩式'],['古典','古典'],['现代','现代'],['简约','简约'],['地中海','地中海'],['宜家','宜家']] )) %>
+  </div>
+
+  <div class="field">
+    <%= f.label "household" %><br>
+    <%= f.select(:household, options_for_select(
+    [['一居','一居'],['两居','两居'],['三居','三居'],['四居','四居'],['小户型','小户型'],
+    ['大户型','大户型'],['别墅','别墅'],['复式','复式'],['loft','loft'],['越层','越层'],['阁楼','阁楼'],['工装','工装']] )) %>
+  </div>
+
+  <div class="field">
+    <%= f.label "size" %><br>
+  <%= f.select(:stage, options_for_select(
+  [['50平米以下','<50m2'],['50-60平米','50-60m2'],['60-90平米','60-90m2'],['90-120平米','90-120m2'],['大于120平米','>120m2']])) %>
+  </div>
+
+  <!--
+    <div class="field">
     <%= f.label :stage %><br>
     <%= f.text_field :stage %>
   </div>
+
+
   <div class="field">
     <%= f.label :style %><br>
     <%= f.text_field :style %>
@@ -27,11 +50,14 @@
     <%= f.label :household %><br>
     <%= f.text_field :household %>
   </div>
+  -->
+
   <div class="field">
     <%= f.label :author %><br>
     <%= f.text_field :author %>
   </div>
   <div class="field">
+    <%= f.label "效果图" %><br>
     <%= f.file_field :pic %>
   </div>
   <div class="actions">

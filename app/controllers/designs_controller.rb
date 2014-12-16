@@ -5,7 +5,14 @@ class DesignsController < ApplicationController
   # GET /designs
   # GET /designs.json
   def index
+    session[:design_style] = params[:style] if params[:style] != nil?
+    session[:design_household] = params[:household] if params[:household] != nil?
+    session[:design_stage] = params[:stage] if params[:stage] != nil?
+
     @designs = Design.all
+    @designs = @designs.where("style =?", session[:design_style]) if not session[:design_style].blank?
+    @designs = @designs.where("household =?", session[:design_household]) if not session[:design_household].blank?
+    @designs = @designs.where("stage =?", session[:design_stage]) if not session[:design_stage].blank?
   end
 
   # GET /designs/1
