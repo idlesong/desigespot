@@ -25,6 +25,12 @@
 <%= image_tag @design.pic.url %>
 </br>
 
+<p>效果图</p>
+<% @design.photos.each do |photo| %>
+  <%= image_tag photo.image.url %>
+<% end %>
+</br>
+
 <%= link_to 'Edit', edit_design_path(@design) %> |
 <%= link_to 'Back', designs_path %>
 

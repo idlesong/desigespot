@@ -11,6 +11,7 @@
         <li>签名：热爱设计，享受生活</li>
         <li>注册日期: <%= @designer.created_at %>
           <!-- Button trigger modal -->
+          <%= link_to 'Edit', edit_designer_path(@designer) %>
           <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
             <i class="fa fa-cloud-upload"></i>上传作品
           </button>
@@ -46,7 +47,7 @@
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
           <%= link_to  design do %>
-          <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+          <%= image_tag(design.photos.first.image.url, :alt => "show", :class => "show") %>
           <% end %>
         </div>
       </div>
@@ -61,7 +62,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- upload design Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

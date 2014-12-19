@@ -35,31 +35,20 @@
   [['50平米以下','<50m2'],['50-60平米','50-60m2'],['60-90平米','60-90m2'],['90-120平米','90-120m2'],['大于120平米','>120m2']])) %>
   </div>
 
-  <!--
-    <div class="field">
-    <%= f.label :stage %><br>
-    <%= f.text_field :stage %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :style %><br>
-    <%= f.text_field :style %>
-  </div>
-  <div class="field">
-    <%= f.label :household %><br>
-    <%= f.text_field :household %>
-  </div>
-  -->
-
   <div class="field">
     <%= f.label :author %><br>
     <%= f.text_field :author %>
   </div>
   <div class="field">
-    <%= f.label "效果图" %><br>
+    <%= f.label "平面图" %><br>
     <%= f.file_field :pic %>
   </div>
+
+  <div class="field">
+    <%= f.label "效果图" %><br>
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
