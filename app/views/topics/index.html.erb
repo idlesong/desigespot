@@ -1,19 +1,24 @@
 <div class="row">
   <div class="col-xs-6 col-md-9">
 
-    <% @topics.each do |topic| %>
-    <div class="bg-success">
-    <p>
-      <%= link_to(image_tag(topic.designer.avatar.url(:thumbnail)) ,topic.designer)%>
-      <%= topic.designer.name %>
-      <i class="fa fa-pencil"></i><%= topic.updated_at %>
-    </p>
-    <p>
-      <%= link_to topic.title, topic %> <span class="badge"><%= topic.replies.count %></span>
-    </p>
+    <ul class="list-group">
 
-    </div>
-    <% end %>
+      <% @topics.each do |topic| %>
+      <li class="list-group-item">
+        <div>
+        <p>
+          <%= link_to(image_tag(topic.designer.avatar.url(:thumbnail)) ,topic.designer)%>
+          <%= topic.designer.name %>
+          <i class="fa fa-pencil"></i><%= topic.updated_at %>
+        </p>
+        <p>
+          <%= link_to topic.title, topic %> <span class="badge"><%= topic.replies.count %></span>
+        </p>
+
+        </div>
+      </li>
+      <% end %>
+    </ul>
 
     <%= link_to '发布新贴', new_topic_path, :class => 'btn btn-primary' %>
   </div>

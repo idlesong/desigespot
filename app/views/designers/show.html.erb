@@ -1,45 +1,49 @@
-<div class="jumbotron">
+<div id="profile-widget" class="panel">
+  <div class="panel-heading">
+  </div>
+  <div class="panel-body">
+    <div class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object img-circle"  src=<%= @designer.avatar.url %>>
+      </a>
+      <div class="media-body">
+        <h2 class="media-heading"><%= @designer.name %></h2>
+        <span>设计宣言：Beautiful is a life style, I will look it for ever!
+        </span>
 
-  <%= image_tag @designer.avatar.url(:medium) %>
-  <p>
-    <strong>Name:</strong>
-    <%= @designer.name %>
+        </br>
+        <span>
+          所在地：<%= @designer.location %>
+          擅长户型：<%= @designer.prefer_household %>
+          擅长风格：<%= @designer.prefer_style %>
+          <%= link_to 'edit', edit_designer_path(@designer), :class =>"btn btn-xs" %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="btn-group btn-group-justified">
+      <a class="btn btn-default" role="button"><i class="fa fa-eye"></i> 172</a>
+      <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
+      <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
+    </div>
+  </div>
+</div>
 
-    <strong>Sex:</strong>
-    <%= @designer.sex %>
-
-
-    <strong>Location:</strong>
-    <%= @designer.location %>
-
-  </p>
-
-  <p>
-    <strong>Prefer style:</strong>
-    <%= @designer.prefer_style %>
-
-    <strong>Prefer household:</strong>
-    <%= @designer.prefer_household %>
-
-    <%= link_to 'Edit', edit_designer_path(@designer) %>
 
 <!-- Button trigger modal
 
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-      <i class="fa fa-cloud-upload"></i>上传作品
-    </button>
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+<i class="fa fa-cloud-upload"></i>上传作品
+</button>
 -->
-  </p>
-
-</div>
-
 <a href="#">近期案例</a>
 
 <% i=0 %>
 <% @designer.designs.each do |design| %>
-<% if i % 4 == 0 %> <div class="row"> <% end %>
+<% if i % 3 == 0 %> <div class="row"> <% end %>
 
-  <div class="col-sm-6 col-md-3">
+  <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <%= link_to  design do %>
       <%= image_tag design.pic.url %>
@@ -53,7 +57,7 @@
     </div>
   </div>
 
-  <% if ((i % 4 == 3) ) %>  </div> <% end %>
+  <% if ((i % 3 == 2) ) %>  </div> </br><% end %>
   <% i += 1 %>
 <% end %>
 

@@ -40,40 +40,40 @@
           <li><a href=<%=topics_path %>>社区</a></li>
           <li><a href=<%=products_path %>>产品助手</a></li>
           <% if current_user %>
-            <li>
-              <a href=<%=admin_url %> > <%= image_tag(current_user.avatar.url(:icon)) %><%= current_user.name %>  </a>
-            </li>
-            <li>
-              <%= link_to("退出", logout_url, :method => :delete)%>
-            </li>
+          <li>
+            <a href=<%=admin_url %> > <%= image_tag(current_user.avatar.url(:icon)) %><%= current_user.name %>  </a>
+          </li>
+          <li>
+            <%= link_to("退出", logout_url, :method => :delete)%>
+          </li>
           <% else %>
-            <li>
-              <!-- Button trigger modal -->
-              <a type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#loginModal">
-                登录
-              </a>
-            </li>
-            <li>
-              <%= link_to('注册', new_designer_url) %>
-            </li>
+          <li>
+            <!-- Button trigger modal -->
+            <a type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#loginModal">
+              登录
+            </a>
+          </li>
+          <li>
+            <%= link_to('注册', new_designer_url) %>
+          </li>
           <% end %>
 
 
 
-          </li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
   </div>
+</div>
 
-  <!-- login modal -->
-  <%= render 'shared/login_form', designer: @designer %>
+<!-- login modal -->
+<%= render 'shared/login_form', designer: @designer %>
 
-  <div class="container theme-showcase" role="main">
+<div class="container theme-showcase" role="main">
 
   <%= yield %>
 
-  </div> <!-- /container -->
+</div> <!-- /container -->
 
 
 </body>

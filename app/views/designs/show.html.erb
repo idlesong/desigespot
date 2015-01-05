@@ -1,33 +1,73 @@
 <p id="notice"><%= notice %></p>
 
-<div class="pull-right">
-  <%= link_to(image_tag(@design.designer.avatar.url(:thumb)), @design.designer) %>
-</div>
-<div> <h3>  <%= @design.name %> </h3></div>
-<div> 所在地：上海 小区:汤臣一品 风格:<%= @design.style %> 户型:<%= @design.household %> 面积：<%= @design.stage %></div>
-<div>
-  <button type="button" class="btn btn-primary btn-sm">喜欢她</button>
-  <button type="button" class="btn btn-primary btn-sm">评论数</button>
+<div class="panel">
+  <div class="panel-heading">
   </div>
-<div>
-  <p>
-  <h4>    案例简述</h4>
-  </br>项目简介：
-  </br>名称：罗兰之歌-- 嘉里现崇山豪宅
-  </br>项目地址：
-  </br>项目面积：1300尺
-  </br>主创设计师：徐静
-  </br>软装设计：例外（香港）国际陈设艺术顾问有限公司
-  </br>看到法式家居，浪漫情调和贵族精神翩然於脑海中。它独特的雅致得到大众认可，蕴含着法式的端庄优雅，欧式的奢华大气，复古的尊贵古典。
-  </p>
+  <div class="panel-body">
+    <div class="pull-left">
+      <%= link_to(image_tag(@design.designer.avatar.url(:thumb)), @design.designer) %>
+    </div>
+    <div> <h3>  <%= @design.name %> </h3></div>
+    <div> 所在地：上海 小区:汤臣一品 风格:<%= @design.style %> 户型:<%= @design.household %> 面积：<%= @design.stage %></div>
+    <div>
+      <button type="button" class="btn btn-primary btn-sm">喜欢她</button>
+      <button type="button" class="btn btn-primary btn-sm">评论数</button>
+    </div>
+    <div>
+      <p>
+            <h4>    案例简述</h4>
+          </br>项目简介：
+        </br>名称：罗兰之歌-- 嘉里现崇山豪宅
+      </br>项目地址：
+      </br>项目面积：1300尺
+      </br>主创设计师：徐静
+      </br>软装设计：例外（香港）国际陈设艺术顾问有限公司
+      </br>看到法式家居，浪漫情调和贵族精神翩然於脑海中。它独特的雅致得到大众认可，蕴含着法式的端庄优雅，欧式的奢华大气，复古的尊贵古典。
+      </p>
+    </div>
+  </div>
+
 </div>
 
-<%= image_tag @design.pic.url %>
-</br>
 
-<p>效果图</p>
+
+<div class="panel">
+  <div class="panel-heading text-center">
+    <h5 class="text-uppercase"><strong>(1)原始尺寸图</strong></h5>
+  </div>
+  <div class="panel-body">
+    <%= image_tag @design.pic.url %>
+  </div>
+  <div class="panel-footer">
+      <a class="btn btn-default" role="button"><i class="fa fa-eye"></i> 172</a>
+      <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
+      <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
+  </div>
+</div>
+
+
+</br>
+<p>(2)各种户型图</p>
+<p>(3)各种立体图SU</p>
+<p>(4)3D渲染及各效果图</p>
 <% @design.photos.each do |photo| %>
-  <%= image_tag photo.image.url %>
+
+
+
+  <div class="panel">
+    <div class="panel-heading text-center">
+      <h5 class="text-uppercase"><strong>效果图</strong></h5>
+    </div>
+    <div class="panel-body">
+      <%= image_tag(photo.image.url) %>
+    </div>
+    <div class="panel-footer">
+      <a class="btn btn-default" role="button"><i class="fa fa-eye"></i> 172</a>
+      <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
+      <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
+    </div>
+  </div>
+
 <% end %>
 </br>
 

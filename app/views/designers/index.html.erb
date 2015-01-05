@@ -1,4 +1,4 @@
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
+<!-- <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
     <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
     role="button" aria-expanded="false">type<span class="caret"></span></a>
@@ -46,9 +46,12 @@
   <a href="designers/new" class="btn btn-default" role="button">join</a>
 </div>
 
-</br>
+</br> -->
+
+<ul class="list-group">
 
 <% @designers.each do |designer| %>
+<li class="list-group-item">
   <div class="row">
     <div class="col-xs-6 col-md-2">
       <div class="thumbnail">
@@ -84,4 +87,6 @@
       <% end %>
     <% end %>
   </div>
+</li>
 <% end %>
+</ul>

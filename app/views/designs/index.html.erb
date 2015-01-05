@@ -1,55 +1,63 @@
 <!-- Fixme show-grid should work -->
 <div class="row show-grid">
 
-<div>
-  风格
-  <% style_arry = ['欧式','中式','日式','韩式','古典','现代','简约','地中海','宜家'] %>
-  <% style_arry.each do |x| %>
-  <%=  link_to(x, designs_path(:style => x))  %>
-  <% end %>
-</div>
-<hr>
-<div>
-  户型
-  <% household_arry = ['一居','两居','三居','四居','小户型','大户型','别墅','复式','loft','越层','阁楼','工装'] %>
-  <% household_arry.each do |x| %>
-  <%=  link_to(x, designs_path(:household => x))  %>
-  <% end %>
-</div>
-<hr>
-<div>
-  面积
-  <% size_arry = ['<50m2','50-60m2','60-90m2','90-120m2','>120m2'] %>
-  <% size_name = ['50平米以下','50-60平米','60-90平米','90-120平米','120平米以上'] %>
-  <% size_arry.each do |x| %>
-  <%=  link_to(x, designs_path(:stage => x))  %>
-  <% end %>
+<ul class="list-group">
+  <li class="list-group-item">
+    <div>
+      风格
+      <% style_arry = ['欧式','中式','日式','韩式','古典','现代','简约','地中海','宜家'] %>
+      <% style_arry.each do |x| %>
+      <%=  link_to(x, designs_path(:style => x))  %>
+      <% end %>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div>
+      户型
+      <% household_arry = ['一居','两居','三居','四居','小户型','大户型','别墅','复式','loft','越层','阁楼','工装'] %>
+      <% household_arry.each do |x| %>
+      <%=  link_to(x, designs_path(:household => x))  %>
+      <% end %>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div>
+      面积
+      <% size_arry = ['<50m2','50-60m2','60-90m2','90-120m2','>120m2'] %>
+      <% size_name = ['50平米以下','50-60平米','60-90平米','90-120平米','120平米以上'] %>
+      <% size_arry.each do |x| %>
+      <%=  link_to(x, designs_path(:stage => x))  %>
+      <% end %>
+    </div>
+  </li>
+</ul>
 
-</div>
-<hr>
+<ul class="list-group">
+  <li class="list-group-item">
+    <a href="#">默认</a> <a href="#">人气最高</a> <a href="#">最新上传</a>
+    <% if not session[:design_style].blank? %>
+      <%= link_to(session[:design_style], designs_path(:style => "")) %>
+    <% end %>
 
-<a href="#">默认</a> <a href="#">人气最高</a> <a href="#">最新上传</a>
-<% if not session[:design_style].blank? %>
-  <%= link_to(session[:design_style], designs_path(:style => "")) %>
-<% end %>
+    <%  if not session[:design_household].blank? %>
+      <%= link_to(session[:design_household], designs_path(:household => "")) %>
+    <% end %>
 
-<%  if not session[:design_household].blank? %>
-  <%= link_to(session[:design_household], designs_path(:household => "")) %>
-<% end %>
+    <%  if not session[:design_stage].blank? %>
+      <%= link_to(session[:design_stage], designs_path(:stage => "")) %>
+    <% end %>
 
-<%  if not session[:design_stage].blank? %>
-  <%= link_to(session[:design_stage], designs_path(:stage => "")) %>
-<% end %>
-
-<%= link_to("清除全部选择", designs_path(:style => "", :household => "",:stage => "")) %>
+    <%= link_to("清除全部选择", designs_path(:style => "", :household => "",:stage => "")) %>
+    </li>
+</ul>
 
 
 <% i=0 %>
 <% @designs.each do |design| %>
-  <% if i % 4 == 0 %> <div class="row"> <% end %>
+  <% if i % 3 == 0 %> <div class="row"> <% end %>
 
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
+  <div class="col-sm-6 col-md-4">
+    <!-- <div class="thumbnail">
       <%= link_to  design do %>
       <%= image_tag design.pic.url %>
       <% end %>
@@ -59,10 +67,51 @@
         <p>上海嘉定-<%= design.household%></p>
         <p><%= link_to(design.designer.name, design_path(design)) %></p>
       </div>
+    </div> -->
+    <div id="profile-widget" class="panel">
+      <div class="panel-heading">
+        <a href=<%= design_path(design)%>><img class="fix-thumbnail"  src=<%= design.pic.url %>></a>
+      </div>
+      <div class="panel-body">
+        <div class="media">
+          <a class="pull-left" href="#">
+            <!-- <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/flashmurphy/128.jpg"> -->
+            <%= image_tag design.designer.avatar.url(:thumbnail) %>
+          </a>
+          <div class="media-body">
+            <div class="list-block">
+              <ul class="text-center legend">
+                <li class="video" style="margin-right: 1px;">
+                  video
+                  <h2>62%</h2>
+                </li>
+                <li class="photo">
+                  photo
+                  <h2>21%</h2>
+                </li>
+                <li class="audio" style="margin-left: 1px;">
+                  audio
+                  <h2>10%</h2>
+                </li>
+              </ul>
+            </div>
+            <h2 class="media-heading">上海嘉定-<%= design.household%></h2>
+            <p><%= link_to(design.designer.name, design_path(design)) %></p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="btn-group btn-group-justified">
+          <a class="btn btn-default" role="button"><i class="fa fa-eye"></i> 172</a>
+          <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
+          <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <% if ((i % 4 == 3) ) %>  </div> <% end %>
+  <% if ((i % 3 == 2) ) %>  </div> <% end %>
   <% i += 1 %>
 <% end %>
 
