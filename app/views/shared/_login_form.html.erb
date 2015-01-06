@@ -2,7 +2,7 @@
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div id="login-widget" class="panel" >
-      <%= form_tag :class=>"form-horizontal" do %>
+      <%= form_tag controller: "sessions", action: "create", method: "get", class: "form-horizontal" do %>
       <div class="panel-heading text-center">
         <h5 class="text-uppercase"><strong>Login to your account</strong></h5>
       </div>

@@ -69,13 +69,12 @@
       </div>
     </div> -->
     <div id="profile-widget" class="panel">
-      <div class="panel-heading">
-        <a href=<%= design_path(design)%>><img class="fix-thumbnail"  src=<%= design.pic.url %>></a>
+      <div class="panel-image">
+        <a href=<%= design_path(design)%>><img class="panel-image-preview"  src=<%= design.pic.url %>></a>
       </div>
       <div class="panel-body">
         <div class="media">
           <a class="pull-left" href="#">
-            <!-- <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/flashmurphy/128.jpg"> -->
             <%= image_tag design.designer.avatar.url(:thumbnail) %>
           </a>
           <div class="media-body">

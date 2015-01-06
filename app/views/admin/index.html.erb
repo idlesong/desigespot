@@ -1,204 +1,160 @@
+<div id="profile-widget" class="panel">
+  <div class="panel-image">
+    <%= image_tag("bg_profile.jpg", :class=>"panel-image-preview")%>
+  </div>
+  <div class="panel-body">
+    <div class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object img-circle"  src=<%= @designer.avatar.url %>>
+      </a>
+      <div class="media-body">
+        <h2 class="media-heading"><%= @designer.name %></h2>
+        <span>设计宣言：Beautiful is a life style, I will look it for ever!
+        </span>
 
+      </br>
+      <span>
+        所在地：<%= @designer.location %>
+        擅长户型：<%= @designer.prefer_household %>
+        擅长风格：<%= @designer.prefer_style %>
+        <%= link_to 'edit', edit_designer_path(@designer), :class =>"btn btn-xs" %>
 
-<div class="bg-success">
-  <%= image_tag @designer.avatar.url(:medium) %>
-  <ul>
-    <li>姓名: <%= @designer.name %></li>
-    <li>擅长户型：<%= @designer.prefer_household %></li>
-    <li>风格：<%= @designer.prefer_style %></li>
-    <li>城市：<%= @designer.location %></li>
-    <li>签名：热爱设计，享受生活</li>
-    <li>注册日期: <%= @designer.created_at %>
-      <!-- Button trigger modal -->
-      <%= link_to 'Edit', edit_designer_path(@designer) %>
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-        <i class="fa fa-cloud-upload"></i>上传作品
-      </button>
-    </li>
-  </ul>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+          <i class="fa fa-cloud-upload"></i>上传作品
+        </button>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="panel-footer">
+  <div class="btn-group btn-group-justified">
+    <a class="btn btn-default" role="tab" href="#designs" data-toggle="tab"><i class="fa fa-eye"></i> 172</a>
+    <a class="btn btn-default" role="tab" href="#topics" data-toggle="tab"><i class="fa fa-comment"></i> 34</a>
+    <a class="btn btn-default highlight" role="tab" href="#likes" data-toggle="tab"><i class="fa fa-heart"></i> 210</a>
+  </div>
+</div>
 </div>
 
 <p id="notice"><%= notice %></p>
-<a href="#">我的设计 快速导航select</a>
-<div class="row">
-  <div class="col-md-5 col-lg-5">
-    <!-- artigo em destaque -->
-    <div class="featured-article">
-      <a href="#">
-        <!-- <img src="http://placehold.it/482x350" alt="" class="thumb"> -->
-        <%= image_tag("base_plan.jpg", :class =>"thumb") %>
-      </a>
-      <div class="block-title">
-        <h2>上海－静安新城－一期－22号楼</h2>
-        <p class="by-author"><small>By Jhon Doe</small></p>
+
+<div role="tabpanel">
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="designs">
+      <a href="#">我的设计 快速导航select</a>
+
+      <% @designer.designs.each do |design| %>
+      <div class="row">
+        <div class="col-md-5 col-lg-5">
+          <!-- artigo em destaque -->
+          <div class="featured-article">
+            <a href="#">
+              <% if design.pic != nil %>
+              <%= image_tag(design.pic.url, :class =>"block-image") %>
+              <% else %>
+              <%= image_tag("base_plan.jpg", :class =>"block-image") %>
+              <% end %>
+            </a>
+            <div class="block-title">
+              <h2>上海－静安新城－一期－22号楼</h2>
+              <p class="by-author"><small>By Jhon Doe</small></p>
+            </div>
+          </div>
+          <!-- /.featured-article -->
+        </div>
+        <div class="col-md-7 col-lg-7">
+          <ul class="media-list main-list">
+            <% 3.times do%>
+            <li class="media">
+              <div class="row">
+                <div class="col-md-3 col-lg-3">
+                  <a class="" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                  </a>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                  <a class="" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                  </a>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                  <a class="" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                  </a>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                  <a class="" href="#">
+                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
+                  </a>
+                </div>
+              </div>
+            </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-    </div>
-    <!-- /.featured-article -->
-  </div>
-  <div class="col-md-7 col-lg-7">
-    <ul class="media-list main-list">
-      <li class="media">
-        <div class="row">
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="media">
-        <div class="row">
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-        </div>
-      </li>
-      <li class="media">
-        <div class="row">
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-          <div class="col-md-3 col-lg-3">
-            <a class="" href="#">
-              <img class="media-object" src="http://placehold.it/150x90" alt="...">
-            </a>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
+      <% end %>
 
+          <!-- <% @designer.designs.each do |design| %>
+          <hr>
+          <div class="row">
 
-<%= 3.times do %>
-<div class="row">
-  <div class="col-md-5 col-lg-5">
-    <!-- artigo em destaque -->
-    <div class="featured-article">
-      <a href="#">
-        <!-- <img src="http://placehold.it/482x350" alt="" class="thumb"> -->
-        <%= image_tag("base_plan.jpg", :class =>"thumb") %>
-      </a>
-      <div class="block-title">
-        <h2>上海－静安新城－一期－22号楼</h2>
-        <p class="by-author"><small>By Jhon Doe</small></p>
+          <div class="col-sm-6 col-md-3">
+          <div class="thumbnail">
+          <%= link_to  design do %>
+          <% if design.pic != nil %>
+          <%= image_tag(design.pic.url) %>
+          <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-    <!-- /.featured-article -->
-  </div>
-  <div class="col-md-7 col-lg-7">
-    <ul class="media-list main-list">
-      <li class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" src="http://placehold.it/150x90" alt="...">
-        </a>
-        <div class="media-body">
-          <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
-          <p class="by-author">By Jhon Doe</p>
-        </div>
-      </li>
-      <li class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" src="http://placehold.it/150x90" alt="...">
-        </a>
-        <div class="media-body">
-          <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
-          <p class="by-author">By Jhon Doe</p>
-        </div>
-      </li>
-      <li class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" src="http://placehold.it/150x90" alt="...">
-        </a>
-        <div class="media-body">
-          <h4 class="media-heading">Lorem ipsum dolor asit amet</h4>
-          <p class="by-author">By Jhon Doe</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-<% end %>
 
-<% @designer.designs.each do |design| %>
-<hr>
-<div class="row">
-  <% showphoto = design.photos.take %>
-
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
+      <% showphoto = design.photos.take %>
+      <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
       <%= link_to  design do %>
-      <% if design.pic != nil %>
-      <%= image_tag(design.pic.url) %>
+      <% if showphoto != nil %>
+      <%= image_tag(showphoto.image.url) %>
       <% end %>
       <% end %>
     </div>
-  </div>
+    </div>
 
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <%= link_to  design do %>
-        <% if showphoto != nil %>
-          <%= image_tag(showphoto.image.url) %>
+    </div>
+    <% end %> -->
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="topics">
+      <a href="#">我的话题</a>
+      <ul class="list-group">
+        <% @designer.topics.each do |topic| %>
+        <li class="list-group-item">
+          <div class="">
+            <p> <%= image_tag topic.designer.avatar.url(:thumbnail) %>
+
+              <%= topic.designer.name %>
+              <i class="fa fa-pencil"></i><%= topic.updated_at %>
+            </p>
+            <p>
+              <%= link_to topic.title, topic %> <span class="badge"><%= topic.replies.count %></span>
+            </p>
+          </div>
+        </li>
         <% end %>
-      <% end %>
+      </ul>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="likes">
+      .5.
     </div>
   </div>
-
 </div>
-<% end %>
 
-<a href="#">我的话题</a>
-<hr>
-<% @designer.topics.each do |topic| %>
-<div class="">
-  <p> <%= image_tag topic.designer.avatar.url(:thumbnail) %>
 
-    <%= topic.designer.name %>
-    <i class="fa fa-pencil"></i><%= topic.updated_at %>
-  </p>
-  <p>
-    <%= link_to topic.title, topic %> <span class="badge"><%= topic.replies.count %></span>
-  </p>
 
-</div>
-<% end %>
 
-</div>
+
+
 
 
 

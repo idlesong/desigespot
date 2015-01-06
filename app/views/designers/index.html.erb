@@ -62,15 +62,15 @@
     </div>
 
     <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <div class="caption">
-          <p><%= designer.name %> 已认证</p>
+      <!-- <div class="thumbnail">
+        <div class="caption"> -->
+          <h4><%= link_to(designer.name,designer_path(designer)) %> 已认证</h4>
           <p>擅长空间-<%= designer.prefer_household %></p>
           <p>擅长风格-<%= designer.prefer_style %></p>
           <p>关注，作品：313 <img src="assets/follow.png" alt="img1"></p>
-        </div>
+        <!-- </div>
 
-      </div>
+      </div> -->
     </div>
 
     <% i=0 %>
