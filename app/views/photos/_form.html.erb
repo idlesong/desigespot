@@ -12,6 +12,12 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+    <!-- <%= image_tag(@photo.image.url,:class=>"preview_thumb") %> -->
+  </div>
+
+  <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>

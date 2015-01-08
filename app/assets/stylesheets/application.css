@@ -19,6 +19,14 @@ body {
   padding-bottom: 30px;
 }
 
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  //color: #fff;
+  background-color: #F1F1F1;
+}
+
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
@@ -33,8 +41,8 @@ body {
   width: auto;
 }
 
-.thumb {
-  //height: 75px;
+.preview_thumb {
+  height: 75px;
   border: 1px solid #000;
   margin: 10px 5px 0 0;
 }
@@ -42,38 +50,6 @@ body {
 *{
   font-family: 'Open Sans', sans-serif;
 }
-
-/*.well {
-  margin-top:-20px;
-  background-color:#007FBD;
-  border:2px solid #0077B2;
-  text-align:center;
-  cursor:pointer;
-  font-size: 25px;
-  padding: 15px;
-  border-radius: 0px !important;
-}
-
-.well:hover {
-  margin-top:-20px;
-  background-color:#0077B2;
-  border:2px solid #0077B2;
-  text-align:center;
-  cursor:pointer;
-  font-size: 25px;
-  padding: 15px;
-  border-radius: 0px !important;
-  border-bottom : 2px solid rgba(97, 203, 255, 0.65);
-}*/
-
-body {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
-  //color: #fff;
-  background-color: #F1F1F1;
-}
-
 
 
 .bg_blur
@@ -294,6 +270,14 @@ put together. I wanted to attempt to mimic their photoshop work and provide some
   display: table-cell;
   margin: 0;
 }
+
+.list-block .block_thumb{
+  height: 75px;
+  width: 85px;
+  //border: 1px solid #000;
+  //margin: 10px 5px 0 0;
+}
+
 .pad-left-0 {
   padding-left: 0px;
 }

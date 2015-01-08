@@ -52,8 +52,6 @@
 <p>(4)3D渲染及各效果图</p>
 <% @design.photos.each do |photo| %>
 
-
-
   <div class="panel">
     <div class="panel-heading text-center">
       <h5 class="text-uppercase"><strong>效果图</strong></h5>
@@ -62,7 +60,7 @@
       <%= image_tag(photo.image.url) %>
     </div>
     <div class="panel-footer">
-      <a class="btn btn-default" role="button"><i class="fa fa-eye"></i> 172</a>
+      <td><%= link_to 'Delete', photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
       <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
     </div>

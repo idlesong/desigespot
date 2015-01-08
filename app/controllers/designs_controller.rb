@@ -38,15 +38,15 @@ class DesignsController < ApplicationController
     @design = @designer.designs.create(design_params)
 
     respond_to do |format|
-
-      if params[:images]
-        params[:images].each { |image|
-          @design.photos.create(image: image)
-        }
-      end
-
       if @design.save
-        format.html { redirect_to designer_path(@designer), notice: 'Design was successfully created.' }
+
+        if params[:images]
+          params[:images].each { |image|
+            @design.photos.create(image: image)
+          }
+        end
+
+        format.html { redirect_to design_path(@design), notice: 'Design was successfully created.' }
         format.json { render :show, status: :created, location: @design }
       else
         format.html { render :new }
@@ -62,6 +62,7 @@ class DesignsController < ApplicationController
       if params[:images]
         params[:images].each { |image|
           @design.photos.create(image: image)
+          render :text => @design.photos.inspect
         }
       end
 
@@ -93,6 +94,6 @@ class DesignsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def design_params
-      params.require(:design).permit(:name, :stage, :style, :household, :author, :pic, :images)
+      params.require(:design).permit(:name, :stage, :style, :household, :author, :pic, :photos)
     end
 end

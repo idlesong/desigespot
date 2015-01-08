@@ -13,25 +13,30 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
 //= require_tree .
+
 
 $(document).ready(function() {
   //Add preview function for photo upload
 
-  $('#design_pic, #images_').on('change', function(event) {
+  $('.preview_images').on('change', function(event) {
+    //alert("preview");
     var files = event.target.files;
-    var image = files[0]
+    var image = files[0];
     var reader = new FileReader();
     reader.onload = function(file) {
       var img = new Image();
       console.log(file);
       img.src = file.target.result;
-      $('#target').html(img);
+
+      var span = $('<span />').html(img);
+
+      $('#preview_list').append(span);
+      $("#preview_list img").addClass('preview_thumb');
     }
+
     reader.readAsDataURL(image);
     console.log(files);
   });
-
 
 });
