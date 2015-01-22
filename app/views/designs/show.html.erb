@@ -60,7 +60,8 @@
       <%= image_tag(photo.image.url) %>
     </div>
     <div class="panel-footer">
-      <td><%= link_to 'Delete', photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <!-- <%= link_to 'Delete', photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } %> -->
+      <%= link_to '显示原图', photo_path(photo) %>
       <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
       <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
     </div>

@@ -1,53 +1,3 @@
-<!-- <div class="btn-group btn-group-justified" role="group" aria-label="...">
-  <div class="btn-group" role="group">
-    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-    role="button" aria-expanded="false">type<span class="caret"></span></a>
-    <ul class="dropdown-menu" role="menu">
-      <li> <a href="#">Action</a> </li>
-      <li> <a href="#">Action2</a> </li>
-      <li class="divider"></li>
-      <li> <a href="#">Action3</a> </li>
-    </ul>
-  </div>
-
-  <div class="btn-group" role="group">
-    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-    role="button" aria-expanded="false">style<span class="caret"></span></a>
-    <ul class="dropdown-menu" role="menu">
-      <li> <a href="#">Action</a> </li>
-      <li> <a href="#">Action2</a> </li>
-      <li class="divider"></li>
-      <li> <a href="#">Action3</a> </li>
-    </ul>
-  </div>
-
-  <div class="btn-group" role="group">
-    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-    role="button" aria-expanded="false">household<span class="caret"></span></a>
-    <ul class="dropdown-menu" role="menu">
-      <li> <a href="#">Action</a> </li>
-      <li> <a href="#">Action2</a> </li>
-      <li class="divider"></li>
-      <li> <a href="#">Action3</a> </li>
-    </ul>
-  </div>
-
-  <div class="btn-group" role="group">
-    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-    role="button" aria-expanded="false">history<span class="caret"></span></a>
-    <ul class="dropdown-menu" role="menu">
-      <li> <a href="#">Action</a> </li>
-      <li> <a href="#">Action2</a> </li>
-      <li class="divider"></li>
-      <li> <a href="#">Action3</a> </li>
-    </ul>
-  </div>
-
-  <a href="designers/new" class="btn btn-default" role="button">join</a>
-</div>
-
-</br> -->
-
 <ul class="list-group">
 
 <% @designers.each do |designer| %>
@@ -62,30 +12,30 @@
     </div>
 
     <div class="col-sm-6 col-md-4">
-      <!-- <div class="thumbnail">
-        <div class="caption"> -->
-          <h4><%= link_to(designer.name,designer_path(designer)) %> 已认证</h4>
-          <p>擅长空间-<%= designer.prefer_household %></p>
-          <p>擅长风格-<%= designer.prefer_style %></p>
-          <p>关注，作品：313 <img src="assets/follow.png" alt="img1"></p>
-        <!-- </div>
-
-      </div> -->
+        <h4><%= link_to(designer.name,designer_path(designer)) %> 已认证</h4>
+        <p>擅长空间-<%= designer.prefer_household %></p>
+        <p>擅长风格-<%= designer.prefer_style %></p>
+        <p><i class="fa fa-eye"></i> 172
+           <i class="fa fa-comment"></i> 34
+           <i class="fa fa-heart"></i> 210
+        </p>
     </div>
 
-    <% i=0 %>
-    <% designer.designs.each do |design| %>
-      <% i=i+1 %>
-      <% if i < 4 %>
+    <% designer.designs.take(3).each do |design| %>
+      <%  url = "design_demo.png"
+        if design.photos.count > 0
+          url = design.photos.first.image.url
+        end
+      %>
       <div class="col-xs-6 col-md-2">
         <div class="thumbnail">
           <%= link_to  design do %>
-          <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
+          <%= image_tag(url) %>
           <% end %>
         </div>
       </div>
-      <% end %>
     <% end %>
+
   </div>
 </li>
 <% end %>
