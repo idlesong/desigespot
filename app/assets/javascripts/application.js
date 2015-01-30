@@ -18,9 +18,11 @@
 
 $(document).ready(function() {
   //Add preview function for photo upload
+  alert("preview prepare");
+  //$("#uploadDesignModal").css("z-index", "1500");
 
   $('.preview_images').on('change', function(event) {
-    //alert("preview");
+    alert("preview");
     var files = event.target.files;
     var image = files[0];
     var reader = new FileReader();

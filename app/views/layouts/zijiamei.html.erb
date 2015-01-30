@@ -1,307 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Zijiamei" %></title>
-    <%= csrf_meta_tags %>
+<html>
+<head>
+  <title>Zijiamei</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
-    <![endif]-->
+</head>
+<body>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
-
-    <!-- For third-generation iPad with high-resolution Retina display: -->
-    <!-- Size should be 144 x 144 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
-
-    <!-- For iPhone with high-resolution Retina display: -->
-    <!-- Size should be 114 x 114 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
-
-    <!-- For first- and second-generation iPad: -->
-    <!-- Size should be 72 x 72 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
-
-    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <!-- Size should be 57 x 57 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
-
-    <!-- For all other devices -->
-    <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
-
-    <%= javascript_include_tag "application" %>
-  </head>
-  <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Zijiamei</a>
-          <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><i class="fa fa-bullhorn"></i>设计师</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href=<%=designs_path%>>设计案例</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">户型方案</a></li>
+              <li><a href="#">风格方案</a></li>
+              <li><a href="#">区域方案</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">其他分类</li>
+              <li><a href="#">原创案例</a></li>
+              <li><a href="#">灵感案例</a></li>
             </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-          <div class="span9">
-            <%= bootstrap_flash %>
-            <%= yield %>
-          </div>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
-        </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>
-
-    </div> <!-- /container -->
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div id="nav-widget" class="btn-group btn-group-justified">
-            <div class="btn-group">
-              <button type="button" class="btn text-uppercase"><i class="fa fa-map-marker fa-2x"></i>  Check In<span class="badge">6</span></button>
-            </div>
-            <div class="btn-group">
-              <button type="button" class="btn text-uppercase"><i class="fa fa-bell fa-2x"></i>  Events</button>
-            </div>
-            <div class="btn-group">
-              <button type="button" class="btn text-uppercase"><i class="fa fa-user fa-2x"></i>  Account</button>
-            </div>
-            <div class="btn-group">
-              <button type="button" class="btn text-uppercase"><i class="fa fa-cog fa-2x"></i>  Settings</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="row">
-        <!-- COLUMN ONE -->
-        <div class="col-sm-6 col-md-4">
-          <!--
-          ****** LINE CHART WIDGET *******
-        -->
-        <div id="line-chart-widget" class="panel">
-          <div class="panel-heading">
-            <h4 class="text-uppercase"><strong>Apple Inc.</strong><span class="label pull-right">107.26 <i class="fa fa-plus"></i>0.23(0.10%)</span><br><small>Nasdaq: AAPL</small></h4>
-          </div>
-          <div class="panel-body">
-            <canvas id="myLineChart"></canvas>
-          </div>
-          <div class="panel-footer">
-            <div class="list-block">
-              <ul class="text-center legend">
-                <li>
-                  <h3>13.5 M</h3>
-                  Shares Traded
-                </li>
-                <li>
-                  <h3>28.44 B</h3>
-                  Market Cap
-                </li>
-              </ul>
-            </div>
-            <div class="chart-block clearfix">
-              <div class="pull-left">
-                Monthly Volume
-                <canvas id="myBarChart"></canvas>
-              </div>
-              <div class="pull-right">
-                Yearly Change<br>
-                <div class="change text-center"><i class="fa fa-plus"></i> 86.01</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-3">
-            <!--
-            ****** SOCIAL BUTTON WIDGET *******
-          -->
-          <div id="social-widget" class="btn-group-vertical mrg-btm-20">
-            <button type="button" class="btn facebook"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></button>
-            <button type="button" class="btn pinterest"><i class="fa fa-pinterest fa-3x"></i></button>
-            <button type="button" class="btn twitter"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></button>
-          </div>
-        </div>
-        <div class="col-xs-9">
-          <!--
-          ****** WEATHER WIDGET *******
-        -->
-        <div id="weather-widget" class="panel">
-          <div class="panel-heading text-center">
-            <div id="current"></div>
-            New York, NY
-          </div>
-          <div class="panel-footer">
-            <div id="hiTemp" class="col-xs-6 text-center"></div>
-            <div id="wind" class="col-xs-6 text-center"></div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- COLUMN TWO -->
-  <div class="col-sm-6 col-md-4">
-    <!--
-    ****** CHART WIDGET *******
-  -->
-  <div id="pie-chart-widget" class="panel">
-    <div class="panel-heading text-center">
-      <h5 class="text-uppercase"><strong>Data Transfer</strong></h5>
-    </div>
-    <div class="panel-body">
-      <canvas id="myPieChart"></canvas>
-    </div>
-    <div class="panel-footer">
-      <div class="list-block">
-        <ul class="text-center legend">
-          <li class="video" style="margin-right: 1px;">
-            video
-            <h2>62%</h2>
           </li>
-          <li class="photo">
-            photo
-            <h2>21%</h2>
+          <li><a href=<%=designers_path %>>设计师</a></li>
+          <li><a href=<%=topics_path %>>社区</a></li>
+          <li><a href=<%=products_path %>>产品助手</a></li>
+          <% if current_user %>
+          <li>
+            <a href=<%=admin_url %> > <%= image_tag(current_user.avatar.url(:icon)) %><%= current_user.name %>  </a>
           </li>
-          <li class="audio" style="margin-left: 1px;">
-            audio
-            <h2>10%</h2>
+          <li>
+            <%= link_to("退出", logout_url, :method => :delete)%>
           </li>
-        </ul>
-      </div>
-      <div class="btn-group btn-group-justified text-uppercase text-center">
-        <a class="btn btn-default" role="button"><i class="fa fa-cloud-upload fa-2x"></i><br><small>Upload Files</small></a>
-        <a class="btn btn-default" role="button"><i class="fa fa-share-alt fa-2x"></i><br><small>Share Link</small></a>
-        <a class="btn btn-default" role="button"><i class="fa fa-history fa-2x"></i><br><small>Back Up</small></a>
-      </div>
-    </div>
-  </div>
-  <!--
-  ****** LOGIN WIDGET *******
--->
-<div id="login-widget" class="panel" >
-  <form id="loginform" class="form-horizontal" role="form">
-    <div class="panel-heading text-center">
-      <h5 class="text-uppercase"><strong>Login to your account</strong></h5>
-    </div>
-    <div class="panel-body">
-      <label for="login-email">Email</label>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input id="login-email" type="text" class="form-control input-lg" name="email" value="" placeholder="email">
-      </div>
-      <label for="login-email">Password</label>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input id="login-password" type="password" class="form-control input-lg" name="password" placeholder="password">
-      </div>
-    </div>
-    <div class="panel-footer text-center">
-      <div class="login-btn">
-        <a href="#" class="btn btn-ui btn-lg btn-block mrg-btm-10"><i class="fa fa-play-circle"></i> Sign In</a>
-        <a href="#"><small>Forgot Username or Password?</small></a>
-      </div>
-      <a href="#" class="facebook"><i class="fa fa-lg fa-facebook-square"></i> Login with Facebook</a>
-    </div>
-  </form>
-</div>
-</div>
-
-
-<!-- COLUMN THREE -->
-<div class="col-sm-6 col-md-4 ">
-  <!--
-  ****** PROFILE WIDGET *******
--->
-<div id="profile-widget" class="panel">
-  <div class="panel-heading">
-  </div>
-  <div class="panel-body">
-    <div class="media">
-      <a class="pull-left" href="#">
-        <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/flashmurphy/128.jpg">
-      </a>
-      <div class="media-body">
-        <h2 class="media-heading">John Raymons</h2>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </div>
-    </div>
-  </div>
-  <div class="panel-footer">
-    <div class="btn-group btn-group-justified">
-      <a class="btn btn-default" role="button"><i class="fa fa-eye"></i> 172</a>
-      <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
-      <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
-    </div>
-  </div>
-</div>
-<!--
-****** USER WIDGET *******
--->
-<div id="user-widget" class="list-group">
-  <div class="list-group-item heading">
-    <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/ademilter/128.jpg">
-    <div class="text-wrap">
-      <h4 class="list-group-item-heading">Richard Willams</h4>
-      <p class="list-group-item-text">15,421 followers</p>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-  <a href="#" class="list-group-item">
-    <i class="fa fa-user fa-lg pull-right"></i>
-    <p class="list-group-item-text">Edit user</p>
-  </a>
-  <a href="#" class="list-group-item">
-    <i class="fa fa-bar-chart-o fa-lg pull-right"></i>
-    <p class="list-group-item-text">Web statistics</p>
-  </a>
-  <a href="#" class="list-group-item">
-    <i class="fa fa-wrench fa-lg pull-right"></i>
-    <p class="list-group-item-text">Upload settings</p>
-  </a>
-  <a href="#" class="list-group-item">
-    <i class="fa fa-calendar fa-lg pull-right"></i>
-    <p class="list-group-item-text">Events</p>
-  </a>
-</div>
-</div>
-</div>
+          <% else %>
+          <li>
+            <!-- Button trigger modal -->
+            <a type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#loginModal">
+              登录
+            </a>
+          </li>
+          <li>
+            <%= link_to('注册', new_designer_url) %>
+          </li>
+          <% end %>
 
 
 
-  </body>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<!-- login modal -->
+<%= render 'shared/login_form', designer: @designer %>
+
+<div class="container theme-showcase" role="main">
+
+  <%= yield %>
+
+</div> <!-- /container -->
+
+
+</body>
 </html>

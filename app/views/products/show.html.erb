@@ -3,7 +3,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-6">
         <div id="profile-widget" class="panel">
           <div class="panel-image">
             <a href="#"><%= image_tag("bg-large.jpg", class: "panel-image-preview")%></a>
@@ -24,9 +24,10 @@
         </div>
       </div>
 
-      <div class="col-sm-12 col-md-8">
+      <div class="col-sm-12 col-md-6">
         <div>
           <h2><%= @product.name %></h2>
+          <h4><%= @product.description %><h4>
           <dl class="dl-horizontal">
             <dt><strong><%= model_class.human_attribute_name(:catalog) %>:</strong></dt>
             <dd><%= @product.catalog %></dd>
@@ -41,7 +42,7 @@
         <div >
           <ul class="list-unstyled">
             <li>
-              <h3>价格：¥200.00</h3>
+              <h3>价格：¥<%= @product.price %></h3>
               Shares Traded
             </li>
             <li>
@@ -74,13 +75,23 @@
     <div class="tab-content">
       </br>
       <div class="tab-pane active" id="tab_default_1">
+
         <div class="row">
-          <% 4.times do%>
-            <div class="col-xs-6 col-md-3">
-              <a href="#" class="thumbnail">
+          <% 4.times do %>
+          <div class="col-md-3 col-sm-3">
+            <div class="feature animated" data-animtype="fadeInLeft"
+            data-animrepeat="0"
+            data-speed="1s"
+            data-delay="0s">
+              <div class="feature-image img-overlay">
                 <%= image_tag("design_demo.png") %>
-              </a>
+                <div class="item-img-overlay">
+                  <a class="portfolio-zoom fa fa-plus" href="images/placeholders/office-image-placeholder.jpg"
+                  data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+                </div>
+              </div>
             </div>
+          </div>
           <% end %>
         </div>
       </div>
@@ -96,7 +107,9 @@
 
     <div class="panel-body">
       <%= image_tag("default_final.jpg") %>
+      </br>
       <%= image_tag("bg-large.jpg") %>
+      </br>
       <%= image_tag("bg_profile.jpg") %>
     </div>
 

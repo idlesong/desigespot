@@ -1,48 +1,218 @@
-<div class="row">
-  <div class="col-xs-6 col-md-9">
+<!-- Topics index -->
 
-    <ul class="list-group">
+<div class="body-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-9">
 
-      <% @topics.each do |topic| %>
-      <li class="list-group-item">
-        <div>
-        <p>
-          <%= link_to(image_tag(topic.designer.avatar.url(:thumbnail)) ,topic.designer)%>
-          <%= topic.designer.name %>
-          <i class="fa fa-pencil"></i><%= topic.updated_at %>
-        </p>
-        <p>
-          <%= link_to topic.title, topic %> <span class="badge"><%= topic.replies.count %></span>
-        </p>
+        <% @topics.each do |topic| %>
+          <!-- Topic Post -->
+          <div class="blog-post">
 
-        </div>
-      </li>
-      <% end %>
-    </ul>
+            <div class="blog-post-type">
+              <i class="icon-pen"> </i>
+            </div>
 
-    <%= link_to '发布新贴', new_topic_path, :class => 'btn btn-primary' %>
-  </div>
-  <div class="col-xs-6 col-md-3">
-    <a href="#">我的设计</a>
-    <% if @designer %>
-      <% i=0 %>
-      <% @designer.designs.each do |design| %>
-      <% if i % 3 == 0 %> <div class="row"> <% end %>
+            <div class="blog-span">
+              <div class="blog-post-featured-img img-overlay">
+                <!-- <img src="images/placeholders/blog1.jpg" alt=""/> -->
+                <%= image_tag("bg_profile.jpg")%>
 
-        <div class="col-sm-6 col-md-4">
-          <div class="thumbnail">
-            <%= link_to  design do %>
-            <%= image_tag("design_demo.png", :alt => "show", :class => "show") %>
-            <% end %>
+                <div class="item-img-overlay">
+                  <a class="portfolio-zoom fa fa-plus" href="images/placeholders/blog1.jpg"
+                  data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+                  <div class="item_img_overlay_content">
+                    <div class="blog-post-details-item blog-post-details-item-left share-article">
+                      <span>Share It On</span>
+                      <a href="#" class="icon-facebook"></a>
+                      <a href="#" class="icon-twitter-alt"></a>
+                      <a href="#" class="icon-google"></a>
+                      <a href="#" class="icon-email-mail-streamline"></a>
+                    </div>
+                    <div class="blog-post-details-item blog-post-details-item-right share-article">
+                      <a href="#" class="icon-heart">25</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2>
+                <a href="">
+                  <%= topic.title %>
+                </a>
+              </h2>
+
+              <div class="blog-post-body">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.            </div>
+
+                <div class="blog-post-details">
+
+                  <!-- Date -->
+                  <div class="blog-post-details-item blog-post-details-item-left icon-calendar">
+                    </i><%= topic.updated_at.strftime("%F") %>
+                  </div>
+
+                  <div class="blog-post-details-item blog-post-details-item-left icon-user">
+                    <a href="">
+                      <%= topic.designer.name %>
+                    </a>
+                  </div>
+                  <!-- //Author Name// -->
+
+
+                  <!-- Tags -->
+                  <div class="blog-post-details-item blog-post-details-item-left blog-post-details-tags icon-files">
+                    <a href="">
+                      Business
+                    </a> ,
+                    <a href="">
+                      Investment
+                    </a> ,
+                    <a href="">
+                      Freelancing
+                    </a>
+                  </div>
+                  <!-- //Tags// -->
+
+                  <!-- Comments -->
+                  <div
+                  class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last icon-comment">
+                  <a href="">
+                    <%= topic.replies.count %> Comments
+                  </a>
+                </div>
+                <!-- //Comments// -->
+
+                <!-- Read More -->
+                <div class="blog-post-details-item blog-post-details-item-right">
+                  <a href=<%= topic_path(topic)%>>
+                    read more <i class="fa fa-chevron-right"></i>
+                  </a>
+                </div>
+                <!-- //Read More// -->
+
+              </div>
+            </div>
           </div>
-        </div>
-
-        <% if ((i % 3 == 2) ) %>  </div> <% end %>
-        <% i += 1 %>
+          <!-- Blog Post -->
         <% end %>
       </div>
 
-      <% if @designer.designs.count % 3 != 0 %> </div> <% end %>
-    <% end %>
+
+      <div class="col-md-3 col-sm-3">
+        <div class="sidebar">
+
+
+          <!-- Sidebar Block -->
+          <div class="sidebar-block">
+            <div class="sidebar-content tags blog-search">
+              <form action="#" method="post">
+                <div class="input-group">
+                  <input type="text" name="q" class="form-control blog-search-input text-input" placeholder="Search.."/>
+                  <span class="input-group-addon">
+                    <button class="blog-search-button icon-search ">
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- Sidebar Block -->
+
+
+          <!-- Sidebar Block -->
+          <div class="sidebar-block">
+            <h3 class="h3-sidebar-title sidebar-title">
+              <%= link_to '发布新贴', new_topic_path, :class => 'btn btn-primary' %>
+              tags
+            </h3>
+
+            <div class="sidebar-content tags">
+              <a href="">装修</a>
+              <a href="">CSS3</a>
+              <a href="">jQuery</a>
+              <a href="">设计</a>
+              <a href="">WordPress</a>
+              <a href="">PHP</a>
+              <a href="">选材</a>
+              <a href="">Social Media</a>
+              <a href="">HTML</a>
+            </div>
+          </div>
+          <!-- Sidebar Block -->
+
+
+          <!-- Sidebar Block -->
+          <div class="sidebar-block">
+            <h3 class="h3-sidebar-title sidebar-title">
+              recent posts
+            </h3>
+
+            <div class="sidebar-content">
+              <ul class="posts-list">
+                <li>
+                  <div class="posts-list-thumbnail">
+                    <a href="">
+                      <%= image_tag("placeholders/blog1-thumb.jpg") %>
+                    </a>
+                  </div>
+                  <div class="posts-list-content">
+                    <a href="" class="posts-list-title">Sidebar post example </a>
+                    <span class="posts-list-meta">
+                      July 30, 2013
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="posts-list-thumbnail">
+                    <a href="">
+                      <!-- <img src="images/placeholders/blog2-thumb.jpg" alt=""/> -->
+                      <%= image_tag("placeholders/blog2-thumb.jpg") %>
+                    </a>
+                  </div>
+                  <div class="posts-list-content">
+                    <a href="" class="posts-list-title">Sidebar post example </a>
+                    <span class="posts-list-meta">
+                      July 30, 2013
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="posts-list-thumbnail">
+                    <a href="">
+                      <!-- <img src="images/placeholders/blog3-thumb.jpg" alt=""/> -->
+                      <%= image_tag("placeholders/blog3-thumb.jpg") %>
+                    </a>
+                  </div>
+                  <div class="posts-list-content">
+                    <a href="" class="posts-list-title">Sidebar post example </a>
+                    <span class="posts-list-meta">
+                      July 30, 2013
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="posts-list-thumbnail">
+                    <a href="">
+                      <!-- <img src="images/placeholders/blog4-thumb.jpg" alt=""/> -->
+                      <%= image_tag("placeholders/blog4-thumb.jpg") %>
+                    </a>
+                  </div>
+                  <div class="posts-list-content">
+                    <a href="" class="posts-list-title">Sidebar post example </a>
+                    <span class="posts-list-meta">
+                      July 30, 2013
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Sidebar Block -->
+        </div>
+      </div>
+
+
+    </div>
   </div>
 </div>
+</div><!--.content-wrapper end -->

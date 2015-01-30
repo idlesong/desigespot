@@ -1,11 +1,11 @@
-<div id="profile-widget" class="panel">
+<div id="profile-widget">
   <div class="panel-image">
-    <%= image_tag("bg_profile.jpg", :class=>"panel-image-preview")%>
+    <!-- <%= image_tag("bg_profile.jpg", :class=>"panel-image-preview")%> -->
   </div>
   <div class="panel-body">
     <div class="media">
       <a class="pull-left" href="#">
-        <img class="media-object img-circle"  src=<%= @designer.avatar.url %>>
+        <img class="media-object img-circle"  src=<%= @designer.avatar.url(:thumb) %>>
       </a>
       <div class="media-body">
         <h2 class="media-heading"><%= @designer.name %></h2>
@@ -19,7 +19,7 @@
         擅长风格：<%= @designer.prefer_style %>
         <%= link_to 'edit', edit_designer_path(@designer), :class =>"btn btn-xs" %>
 
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#uploadDesignModal">
           <i class="fa fa-cloud-upload"></i>上传作品
         </button>
       </span>
@@ -28,9 +28,9 @@
 </div>
 <div class="panel-footer">
   <div class="btn-group btn-group-justified">
-    <a class="btn btn-default" role="tab" href="#designs" data-toggle="tab"><i class="fa fa-eye"></i> 172</a>
-    <a class="btn btn-default" role="tab" href="#topics" data-toggle="tab"><i class="fa fa-comment"></i> 34</a>
-    <a class="btn btn-default highlight" role="tab" href="#likes" data-toggle="tab"><i class="fa fa-heart"></i> 210</a>
+    <a class="btn btn-link" role="tab" href="#designs" data-toggle="tab"><i class="fa fa-eye"></i> 172</a>
+    <a class="btn btn-link" role="tab" href="#topics" data-toggle="tab"><i class="fa fa-comment"></i> 34</a>
+    <a class="btn btn-link highlight" role="tab" href="#likes" data-toggle="tab"><i class="fa fa-heart"></i> 210</a>
   </div>
 </div>
 </div>
@@ -41,103 +41,145 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="designs">
-      <a href="#">我的设计 快速导航select</a>
+      <a href="#">我的设计 按时间排序； 按热度排序</a>
 
       <% @designer.designs.each do |design| %>
       <div class="row">
-        <div class="col-md-5 col-lg-5">
-          <!-- artigo em destaque -->
-          <div class="featured-article">
-            <a href="#">
-              <% if design.pic != nil %>
-                <%= link_to(image_tag(design.pic.url, :class =>"block-image"), design_path(design)) %>
-              <% else %>
-                <%= link_to(image_tag("base_plan.jpg", :class =>"block-image"),design_path(design)) %>
-              <% end %>
-            </a>
-            <div class="block-title">
-              <h2>上海－静安新城－一期－22号楼</h2>
-              <p class="by-author"><small>By Jhon Doe</small></p>
+        <div class="col-md-4 col-ms-4">
+          <div class="feature animated" data-animtype="fadeIn" data-animrepeat="0" data-animspeed="1s" data-animdelay="0s">
+            <div class="feature-image img-overlay">
+
+              <%= image_tag(design.pic.url) %>
+
+              <div class="item-img-overlay">
+                <a class="portfolio-zoom fa fa-plus" href= <%= design_path(design) %>
+                    title="Title goes here"></a>
+              </div>
+            </div>
+
+            <div class="feature-content">
+              <h3 class="h3-body-title blog-title">
+                <a href=<%= design_path(design) %>><%= design.name %> [<%= design.household %>][上海嘉定－江桥]</a>
+                <a href=<%= edit_design_path(design) %> <i class="fa fa-pencil"></i></a>
+              </h3>
+              <p>
+                设计师说：“<%= design.author %>”
+              </p>
+            </div>
+
+            <div class="feature-details">
+              <i class="icon-calendar"></i>
+              <span>July 10, 2013</span>
+              <span class="details-seperator"></span>
+
+              <a href="#"><i class="icon-comment"></i><span>4</span></a>
+
+              <div class="feature-share">
+                <a href="#"><i class="icon-heart"></i></a>
+                <a href="#"><i class="icon-facebook"></i></a>
+              </div>
             </div>
           </div>
-          <!-- /.featured-article -->
         </div>
-        <div class="col-md-7 col-lg-7">
+
+        <%
+
+          plane_photos_urls = Array.new(5,"img150x90.gif")
+          stereo_photos_urls = Array.new(5,"img150x90.gif")
+          other_photos_urls = Array.new(5,"img150x90.gif")
+
+          plane_photos = design.photos.where(description: "plane_images")
+          stereo_photos = design.photos.where(description: "stereo_images")
+          other_photos = design.photos.where(description: "stereo_render_images")
+
+          plane_photos.each { |photo| plane_photos_urls.unshift(photo.image.url)};
+          stereo_photos.each { |photo| stereo_photos_urls.unshift(photo.image.url)};
+          other_photos.each { |photo| other_photos_urls.unshift(photo.image.url)};
+
+        %>
+
+        <!-- <%= plane_photos %> -->
+
+        <div class="col-md-8 col-lg-8">
           <ul class="media-list main-list">
-            <% 3.times do%>
+
             <li class="media">
               <div class="row">
-                <!-- <div class="col-md-3 col-lg-3">
-                  <a class="" href="#">
-                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
-                  </a>
-                </div>
-                <div class="col-md-3 col-lg-3">
-                  <a class="" href="#">
-                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
-                  </a>
-                </div>
-                <div class="col-md-3 col-lg-3">
-                  <a class="" href="#">
-                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
-                  </a>
-                </div>
-                <div class="col-md-3 col-lg-3">
-                  <a class="" href="#">
-                    <img class="media-object" src="http://placehold.it/150x90" alt="...">
-                  </a>
-                </div> -->
                 <div class="list-block">
                   <ul>
+                    <% 5.times do |t| %>
                     <li>
-                      <%= image_tag("img150x90.gif") %>
+                      <div class="img-overlay thumb-label-item-img">
+                        <%= image_tag(plane_photos_urls[t]) %>
+
+                        <div class="item-img-overlay">
+                          <a class="portfolio-zoom fa fa-plus" href= <%= image_url("placeholders/portfolio1.jpg") %>
+                            data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+                            <div class="item_img_overlay_content">
+                              <h3 class="thumb-label-item-title"> <a href="">view </a> </h3>
+                            </div>
+                          </div>
+                      </div>
                     </li>
-                    <li class="">
-                      <%= image_tag("img150x90.gif") %>
-                    </li>
-                    <li>
-                      <%= image_tag("img150x90.gif") %>
-                    </li>
-                    <li>
-                      <%= image_tag("img150x90.gif") %>
-                    </li>
+                    <% end %>
                   </ul>
                 </div>
               </div>
             </li>
-            <% end %>
+
+            <li class="media">
+              <div class="row">
+                <div class="list-block">
+                  <ul>
+                    <% 5.times do |t|%>
+                    <li>
+                      <div class="img-overlay thumb-label-item-img">
+                        <%= image_tag(stereo_photos_urls[t]) %>
+
+                        <div class="item-img-overlay">
+                          <a class="portfolio-zoom fa fa-plus" href= <%= image_url("placeholders/portfolio1.jpg") %>
+                            data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+                            <div class="item_img_overlay_content">
+                              <h3 class="thumb-label-item-title"> <a href="">view </a> </h3>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+
+              <li class="media">
+                <div class="row">
+                  <div class="list-block">
+                    <ul>
+                      <% 5.times do |t|%>
+                      <li>
+                        <div class="img-overlay thumb-label-item-img">
+                          <%= image_tag(other_photos_urls[t]) %>
+
+                          <div class="item-img-overlay">
+                            <a class="portfolio-zoom fa fa-plus" href= <%= image_url("placeholders/portfolio1.jpg") %>
+                              data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+                              <div class="item_img_overlay_content">
+                                <h3 class="thumb-label-item-title"> <a href="">view </a> </h3>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
           </ul>
         </div>
       </div>
+      </br>
       <% end %>
 
-          <!-- <% @designer.designs.each do |design| %>
-          <hr>
-          <div class="row">
-
-          <div class="col-sm-6 col-md-3">
-          <div class="thumbnail">
-          <%= link_to  design do %>
-          <% if design.pic != nil %>
-          <%= image_tag(design.pic.url) %>
-          <% end %>
-          <% end %>
-        </div>
-      </div>
-
-      <% showphoto = design.photos.take %>
-      <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-      <%= link_to  design do %>
-      <% if showphoto != nil %>
-      <%= image_tag(showphoto.image.url) %>
-      <% end %>
-      <% end %>
-    </div>
-    </div>
-
-    </div>
-    <% end %> -->
     </div>
 
     <div role="tabpanel" class="tab-pane" id="topics">
@@ -168,15 +210,10 @@
 
 
 
-
-
-
-
-
-
 <!-- upload design Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal fade" id="uploadDesignModal" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

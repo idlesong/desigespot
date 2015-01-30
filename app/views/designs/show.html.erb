@@ -1,101 +1,309 @@
 <p id="notice"><%= notice %></p>
 
-<div class="panel">
-  <div class="panel-heading">
-  </div>
-  <div class="panel-body">
-    <div class="pull-left">
-      <%= link_to(image_tag(@design.designer.avatar.url(:thumb)), @design.designer) %>
-    </div>
-    <div> <h3>  <%= @design.name %> </h3></div>
-    <div> 所在地：上海 小区:汤臣一品 风格:<%= @design.style %> 户型:<%= @design.household %> 面积：<%= @design.stage %></div>
-    <div>
-      <button type="button" class="btn btn-primary btn-sm">喜欢她</button>
-      <button type="button" class="btn btn-primary btn-sm">评论数</button>
-    </div>
-    <div>
-      <p>
-            <h4>    案例简述</h4>
-          </br>项目简介：
-        </br>名称：罗兰之歌-- 嘉里现崇山豪宅
-      </br>项目地址：
-      </br>项目面积：1300尺
-      </br>主创设计师：徐静
-      </br>软装设计：例外（香港）国际陈设艺术顾问有限公司
-      </br>看到法式家居，浪漫情调和贵族精神翩然於脑海中。它独特的雅致得到大众认可，蕴含着法式的端庄优雅，欧式的奢华大气，复古的尊贵古典。
-      </p>
-    </div>
-  </div>
+<!-- Design show -->
+<div class="body-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 col-sm-9">
 
+        <!-- About the author -->
+        <div class="about-the-author">
+          <div class="blog-span-bottom">
+
+            <div class="the-author-bio">
+              <div class="the-author-thumbnail">
+                <!-- <img src="images/placeholders/author-placeholder.jpg" alt="John Doe"  class="img-responsive"/> -->
+                <%= image_tag(@design.designer.avatar.url(:thumb), :class => "img-responsive") %>
+              </div>
+
+              <div class="the-author-small-bio">
+                <div class="the-author-name">
+                  <h3>  <%= @design.name %> </h3>
+                </div>
+                <div> 所在地：上海 小区:汤臣一品 风格:<%= @design.style %> 户型:<%= @design.household %> 面积：<%= @design.stage %>
+                  <button type="button" class="btn btn-primary btn-sm">喜欢她</button>
+                  <button type="button" class="btn btn-primary btn-sm">评论数</button>
+                </div>
+                <p>
+                  看到法式家居，浪漫情调和贵族精神翩然於脑海中。它独特的雅致得到大众认可，蕴含着法式的端庄优雅，欧式的奢华大气，复古的尊贵古典。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic Post -->
+        <div class="blog-post">
+
+          <div class="blog-post-type">
+            <i class="icon-pen"> </i>
+          </div>
+
+          <div class="blog-span">
+            <h2>
+              <a href="">
+                <%= @design.name %>
+              </a>
+            </h2>
+
+            <% @design.photos.each do |photo| %>
+            <div class="blog-post-featured-img img-overlay">
+              <!-- <img src="images/placeholders/blog1.jpg" alt=""/> -->
+              <%= image_tag(photo.image.url)%>
+
+              <div class="item-img-overlay">
+                <a class="portfolio-zoom fa fa-plus" href="images/placeholders/blog1.jpg"
+                data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+                <div class="item_img_overlay_content">
+                  <div class="blog-post-details-item blog-post-details-item-left share-article">
+                    <span>Share It On</span>
+                    <a href="#" class="icon-facebook"></a>
+                    <a href="#" class="icon-twitter-alt"></a>
+                  </div>
+                  <div class="blog-post-details-item blog-post-details-item-right share-article">
+                    <a href="#" class="icon-heart">25</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p>description:<%= photo.description%> <%= link_to("edit photo", edit_photo_path(photo) )%> </p>
+            <% end %>
+
+            <div class="title-block clearfix">
+              <h3 class="h3-body-title">原始尺寸图</h3>
+              <div class="title-seperator"></div>
+            </div>
+            <div class="blog-post-featured-img img-overlay">
+              <!-- <img src="images/placeholders/blog1.jpg" alt=""/> -->
+              <%= image_tag @design.pic.url %>
+
+              <div class="item-img-overlay">
+                <a class="portfolio-zoom fa fa-plus" href="images/placeholders/blog1.jpg"
+                data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+                <div class="item_img_overlay_content">
+                  <div class="blog-post-details-item blog-post-details-item-left share-article">
+                    <span>Share It On</span>
+                    <a href="#" class="icon-facebook"></a>
+                    <a href="#" class="icon-twitter-alt"></a>
+                  </div>
+                  <div class="blog-post-details-item blog-post-details-item-right share-article">
+                    <a href="#" class="icon-heart">25</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="title-block clearfix">
+              <h3 class="h3-body-title">design details</h3>
+              <div class="title-seperator"></div>
+            </div>
+
+            <div class="blog-post-body">
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.            </div>
+              <h3> CAD files </h3>
+              <h3> 3D files </h3>
+              <h3> 3D redering files </h3>
+
+              <div class="blog-post-details">
+
+                <!-- Date -->
+                <div class="blog-post-details-item blog-post-details-item-left icon-calendar">
+                  <%= @design.updated_at.strftime("%F") %>
+                </div>
+
+                <div class="blog-post-details-item blog-post-details-item-left icon-user">
+                  <a href="">
+                    <%= @design.designer.name %>
+                  </a>
+                </div>
+                <!-- //Author Name// -->
+
+
+                <!-- Tags -->
+                <div class="blog-post-details-item blog-post-details-item-left blog-post-details-tags icon-files">
+                  <a href="">
+                    Business
+                  </a> ,
+                  <a href="">
+                    Investment
+                  </a> ,
+                  <a href="">
+                    Freelancing
+                  </a>
+                </div>
+                <!-- //Tags// -->
+
+                <!-- Comments -->
+                <div
+                class="blog-post-details-item blog-post-details-item-left blog-post-details-item-last icon-comment">
+                <a href="">
+                  3 Comments
+                </a>
+              </div>
+              <!-- //Comments// -->
+
+              <!-- Read More -->
+              <div class="blog-post-details-item blog-post-details-item-right">
+                <a href="">
+                  read more <i class="fa fa-chevron-right"></i>
+                </a>
+              </div>
+              <!-- //Read More// -->
+
+            </div>
+
+            <!-- comments -->
+            <!-- <%= link_to 'Edit', edit_design_path(@design) %> |
+            <%= link_to 'Back', designs_path %> -->
+            </br> 
+            <% @design.comments.each do |comment| %>
+            <p>
+              <strong>Label:</strong>
+              <%= comment.label %>
+            </p>
+
+            <p>
+              <strong>Comment:</strong>
+              <%= comment.content %>
+            </p>
+            <% end %>
+
+            <%= form_for([@design, @design.comments.build]) do |f| %>
+
+            <div class="field">
+              <%= f.label :content %><br>
+              <%= f.text_area :content %>
+            </div>
+            <div class="field">
+              <%= f.label :label %><br>
+              <%= f.text_field :label %>
+            </div>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+            <% end %>
+
+          </div>
+        </div>
+        <!-- Blog Post -->
+      </div>
+
+
+      <div class="col-md-3 col-sm-3">
+        <div class="sidebar">
+
+
+          <!-- Sidebar Block -->
+          <div class="sidebar-block">
+            <div class="sidebar-content tags blog-search">
+              <form action="#" method="post">
+                <div class="input-group">
+                  <input type="text" name="q" class="form-control blog-search-input text-input" placeholder="Search.."/>
+                  <span class="input-group-addon">
+                    <button class="blog-search-button icon-search ">
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- Sidebar Block -->
+
+
+          <!-- Sidebar Block -->
+          <div class="sidebar-block">
+            <h3 class="h3-sidebar-title sidebar-title">
+              <%= link_to '发布新贴', new_topic_path, :class => 'btn btn-primary' %>
+              tags
+            </h3>
+
+            <div class="sidebar-content tags">
+              <a href="">装修</a>
+              <a href="">CSS3</a>
+              <a href="">jQuery</a>
+              <a href="">设计</a>
+              <a href="">WordPress</a>
+              <a href="">PHP</a>
+              <a href="">选材</a>
+              <a href="">Social Media</a>
+              <a href="">HTML</a>
+            </div>
+          </div>
+          <!-- Sidebar Block -->
+
+
+          <!-- Sidebar Block -->
+          <div class="sidebar-block">
+            <h3 class="h3-sidebar-title sidebar-title">
+              recent posts
+            </h3>
+
+            <div class="sidebar-content">
+              <ul class="posts-list">
+                <li>
+                  <div class="posts-list-thumbnail">
+                    <a href="">
+                      <%= image_tag("placeholders/blog1-thumb.jpg") %>
+                    </a>
+                  </div>
+                  <div class="posts-list-content">
+                    <a href="" class="posts-list-title">Sidebar post example </a>
+                    <span class="posts-list-meta">
+                      July 30, 2013
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="posts-list-thumbnail">
+                    <a href="">
+                      <!-- <img src="images/placeholders/blog2-thumb.jpg" alt=""/> -->
+                      <%= image_tag("placeholders/blog2-thumb.jpg") %>
+                    </a>
+                  </div>
+                  <div class="posts-list-content">
+                    <a href="" class="posts-list-title">Sidebar post example </a>
+                    <span class="posts-list-meta">
+                      July 30, 2013
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="posts-list-thumbnail">
+                    <a href="">
+                      <!-- <img src="images/placeholders/blog3-thumb.jpg" alt=""/> -->
+                      <%= image_tag("placeholders/blog3-thumb.jpg") %>
+                    </a>
+                  </div>
+                  <div class="posts-list-content">
+                    <a href="" class="posts-list-title">Sidebar post example </a>
+                    <span class="posts-list-meta">
+                      July 30, 2013
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="posts-list-thumbnail">
+                    <a href="">
+                      <!-- <img src="images/placeholders/blog4-thumb.jpg" alt=""/> -->
+                      <%= image_tag("placeholders/blog4-thumb.jpg") %>
+                    </a>
+                  </div>
+                  <div class="posts-list-content">
+                    <a href="" class="posts-list-title">Sidebar post example </a>
+                    <span class="posts-list-meta">
+                      July 30, 2013
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Sidebar Block -->
+        </div>
+      </div>
+
+
+    </div>
+  </div>
 </div>
-
-
-
-<div class="panel">
-  <div class="panel-heading text-center">
-    <h5 class="text-uppercase"><strong>(1)原始尺寸图</strong></h5>
-  </div>
-  <div class="panel-body">
-    <%= image_tag @design.pic.url %>
-  </div>
-  <div class="panel-footer">
-      <a class="btn btn-default" role="button"><i class="fa fa-eye"></i> 172</a>
-      <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
-      <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
-  </div>
-</div>
-
-
-</br>
-<p>(2)各种户型图</p>
-<p>(3)各种立体图SU</p>
-<p>(4)3D渲染及各效果图</p>
-<% @design.photos.each do |photo| %>
-
-  <div class="panel">
-    <div class="panel-heading text-center">
-      <h5 class="text-uppercase"><strong>效果图</strong></h5>
-    </div>
-    <div class="panel-body">
-      <%= image_tag(photo.image.url) %>
-    </div>
-    <div class="panel-footer">
-      <!-- <%= link_to 'Delete', photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' } %> -->
-      <%= link_to '显示原图', photo_path(photo) %>
-      <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
-      <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
-    </div>
-  </div>
-
-<% end %>
-</br>
-
-<%= link_to 'Edit', edit_design_path(@design) %> |
-<%= link_to 'Back', designs_path %>
-
-<% @design.comments.each do |comment| %>
-  <p>
-    <strong>Label:</strong>
-    <%= comment.label %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.content %>
-  </p>
-<% end %>
-
-<%= form_for([@design, @design.comments.build]) do |f| %>
-
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
-    <%= f.label :label %><br>
-    <%= f.text_field :label %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div><!--.content-wrapper end -->

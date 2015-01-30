@@ -11,50 +11,157 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class = "row">
+    <div class = "col-ms-5, col-md-5">
+      <div class="field">
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= f.label "style" %><br>
+        <%= f.select(:style, options_for_select(
+        [['欧式','欧式'],['中式','中式'],['日式','日式'],['韩式','韩式'],['古典','古典'],['现代','现代'],['简约','简约'],['地中海','地中海'],['宜家','宜家']] )) %>
+      </div>
+
+      <div class="field">
+        <%= f.label "household" %><br>
+        <%= f.select(:household, options_for_select(
+        [['一居','一居'],['两居','两居'],['三居','三居'],['四居','四居'],['小户型','小户型'],
+        ['大户型','大户型'],['别墅','别墅'],['复式','复式'],['loft','loft'],['越层','越层'],['阁楼','阁楼'],['工装','工装']] )) %>
+      </div>
+
+      <div class="field">
+        <%= f.label "size" %><br>
+      <%= f.select(:stage, options_for_select(
+      [['50平米以下','<50m2'],['50-60平米','50-60m2'],['60-90平米','60-90m2'],['90-120平米','90-120m2'],['大于120平米','>120m2']])) %>
+      </div>
+
+      <div class="field">
+        <%= f.label "description" %><br>
+        <%= f.text_field :author %>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-ms-6">
+      <div class="feature-image img-overlay">
+        <%= image_tag(@design.pic.url) %>
+      </div>
+      <div class="field">
+        <%= f.label "原始尺寸图" %><br>
+        <%= f.file_field :pic %>
+      </div>
+    </div>
+
   </div>
 
-  <div class="field">
-    <%= f.label "style" %><br>
-    <%= f.select(:style, options_for_select(
-    [['欧式','欧式'],['中式','中式'],['日式','日式'],['韩式','韩式'],['古典','古典'],['现代','现代'],['简约','简约'],['地中海','地中海'],['宜家','宜家']] )) %>
-  </div>
+  <%
+    plane_images = @design.photos.where(description: "plane_images")
+    stereo_images = @design.photos.where(description: "stereo_images")
+    stereo_render_images = @design.photos.where(description: "stereo_render_images")
+  %>
+
+  <hr>
+  <h3> plane_images</h3>
+
+  <% i=0 %>
+  <% k = plane_images.count - 1 %>
+  <% plane_images.each do |photo| %>
+    <% if i % 4 == 0 %>
+      <div class="row">
+    <% end %>
+
+    <div class="col-md-3 col-sm-3">
+      <div class="feature animated" data-animtype="fadeInLeft" data-animrepeat="0"
+            data-speed="1s" data-delay="0s">
+        <div class="feature-image img-overlay">
+          <%= image_tag(photo.image.url) %>
+          <div class="item-img-overlay">
+            <a class="portfolio-zoom fa fa-pencil" href= <%= edit_photo_path(photo) %>
+            data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if ((i % 4 == 3) or (i == k)) %>  </div> </br><% end %>
+    <% i = i + 1 %>
+
+  <% end %>
 
   <div class="field">
-    <%= f.label "household" %><br>
-    <%= f.select(:household, options_for_select(
-    [['一居','一居'],['两居','两居'],['三居','三居'],['四居','四居'],['小户型','小户型'],
-    ['大户型','大户型'],['别墅','别墅'],['复式','复式'],['loft','loft'],['越层','越层'],['阁楼','阁楼'],['工装','工装']] )) %>
-  </div>
-
-  <div class="field">
-    <%= f.label "size" %><br>
-  <%= f.select(:stage, options_for_select(
-  [['50平米以下','<50m2'],['50-60平米','50-60m2'],['60-90平米','60-90m2'],['90-120平米','90-120m2'],['大于120平米','>120m2']])) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :author %><br>
-    <%= f.text_field :author %>
-  </div>
-  <div class="field">
-    <%= f.label "平面图" %><br>
-    <%= f.file_field :pic %>
-    <%= image_tag(@design.pic.url,:class=>"preview_thumb") %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :image %><br>
+    <%= f.label "Add more plane images" %><br>
     <%= file_field_tag "images[]", type: :file, multiple: true %>
   </div>
 
-  <div id="show_list">
-    <% @design.photos.each do |photo| %>
-    <%= image_tag(photo.image.url,:class=>"preview_thumb") %>
+  <output id="preview_list"></output>
+
+
+  <hr>
+  <h3> stereo_images</h3>
+  <% i=0 %>
+  <% k = stereo_images.count - 1 %>
+
+  <% stereo_images.each do |photo| %>
+    <% if i % 4 == 0%>
+      <div class="row">
     <% end %>
+
+    <div class="col-md-3 col-sm-3">
+      <div class="feature animated" data-animtype="fadeInLeft" data-animrepeat="0"
+      data-speed="1s" data-delay="0s">
+        <div class="feature-image img-overlay">
+          <%= image_tag(photo.image.url) %>
+          <div class="item-img-overlay">
+            <a class="portfolio-zoom fa fa-pencil" href= <%= edit_photo_path(photo) %>
+            data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if ((i % 4 == 3) or (i == k)) %>  </div> </br><% end %>
+    <% i = i + 1 %>
+
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Add more stereo images" %><br>
+    <%= file_field_tag "stereo_images[]", type: :file, multiple: true %>
+  </div>
+
+  <output id="preview_list"></output>
+
+  <hr>
+  <h3> stereo_render_images</h3>
+
+  <% i=0 %>
+  <% k = stereo_render_images.count - 1 %>
+  <% stereo_render_images.each do |photo| %>
+    <% if i % 4 == 0%>
+      <div class="row">
+    <% end %>
+
+    <div class="col-md-3 col-sm-3">
+      <div class="feature animated" data-animtype="fadeInLeft" data-animrepeat="0" data-speed="1s" data-delay="0s">
+        <div class="feature-image img-overlay">
+          <%= image_tag(photo.image.url) %>
+          <div class="item-img-overlay">
+            <a class="portfolio-zoom fa fa-pencil" href= <%= photo.image.url %>
+            data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if ((i % 4 == 3) or (i == k)) %>  </div> </br><% end %>
+    <% i = i + 1 %>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label "Add more stereo render images" %><br>
+    <%= file_field_tag "stereo_render_images[]", type: :file, multiple: true %>
   </div>
 
   <output id="preview_list"></output>

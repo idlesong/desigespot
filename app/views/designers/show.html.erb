@@ -1,6 +1,6 @@
-<div id="profile-widget" class="panel">
+<div id="profile-widget" class="panel classic-form">
   <div class="panel-image">
-    <%= image_tag("bg_profile.jpg", :class=>"panel-image-preview")%>
+    <%= image_tag("", :class=>"panel-image-preview")%>
   </div>
   <div class="panel-body">
     <div class="media">
@@ -17,71 +17,98 @@
           所在地：<%= @designer.location %>
           擅长户型：<%= @designer.prefer_household %>
           擅长风格：<%= @designer.prefer_style %>
-          <%= link_to 'edit', edit_designer_path(@designer), :class =>"btn btn-xs" %>
+          <%= link_to 'edit', edit_designer_path(@designer), :class =>"btn btn-sm" %>
         </span>
       </div>
     </div>
-  </div>
-  <div class="panel-footer">
-    <div class="btn-group btn-group-justified">
-      <a class="btn btn-default" role="button"><i class="fa fa-eye"></i> 172</a>
-      <a class="btn btn-default" role="button"><i class="fa fa-comment"></i> 34</a>
-      <a class="btn btn-default highlight" role="button"><i class="fa fa-heart"></i> 210</a>
+
+    <div class="section-content section-tabs section-px stones-bg white-text">
+      <div class="tab-container">
+        <div class="section-tab-arrow"></div>
+        <div class="section-etabs-container">
+          <ul class="section-etabs">
+            <li class="tab active">
+              <a href="#tabc1"> Designs(12)</a>
+            </li>
+            <li class="tab">
+              <a href="#tabc2"> Topics(3)</a>
+            </li>
+            <li class="tab">
+              <a href="#tabc3"> Likes(172)</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
 
-
-<!-- Button trigger modal
-
-<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-<i class="fa fa-cloud-upload"></i>上传作品
-</button>
--->
-<a href="#">近期案例</a>
-
-<% i=0 %>
-<% @designer.designs.each do |design| %>
-<% if i % 3 == 0 %> <div class="row"> <% end %>
-
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <%= link_to  design do %>
-      <%= image_tag design.pic.url %>
-      <% end %>
-
-      <div class="caption">
-        <h3><%= design.name %></h3>
-        <p>上海嘉定-<%= design.household %></p>
-        <p><a href="#"><%= @designer.name %></a></p>
-      </div>
-    </div>
-  </div>
-
-  <% if ((i % 3 == 2) ) %>  </div> </br><% end %>
-  <% i += 1 %>
-<% end %>
 
 
 <p id="notice"><%= notice %></p>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">上传作品</h4>
+<div class="loading-container">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="content-wrapper hide-until-loading">
+  <div class="body-wrapper">
+    <div class="container">
+
+    <% i=0 %>
+    <% k = @designer.designs.count -1 %>
+    <% @designer.designs.each do |design| %>
+      <% if i % 3 == 0%>
+        <div class="row animated" data-animtype="fadeInUp" data-animrepeat="0"
+        data-animdelay="0.4s">
+      <% end %>
+
+      <div class="col-md-4 col-ms-4">
+        <div class="feature animated" data-animtype="fadeIn" data-animrepeat="0" data-animspeed="1s" data-animdelay="0s">
+          <div class="feature-image img-overlay">
+
+            <%= image_tag(design.pic.url) %>
+
+            <div class="item-img-overlay">
+              <a class="portfolio-zoom fa fa-plus" href= ""
+              data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+            </div>
+          </div>
+
+          <div class="feature-content">
+            <h3 class="h3-body-title blog-title">
+              <a href=""><%= design.name %> [<%= design.household %>][上海嘉定－江桥]</a>
+            </h3>
+            <p>
+              <%= i %>
+              Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+              In enim justo, rhoncus ut, imperdiet a [...]
+            </p>
+          </div>
+
+          <div class="feature-details">
+            <i class="icon-calendar"></i>
+            <span>July 10, 2013</span>
+            <span class="details-seperator"></span>
+
+            <a href="#"><i class="icon-comment"></i><span>4</span></a>
+
+            <div class="feature-share">
+              <a href="#"><i class="icon-heart"></i></a>
+              <a href="#"><i class="icon-facebook"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <%= render 'shared/design_form', designer: @designer %>
-      </div>
-      <!--
-      <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
+
+
+      <% if ((i % 3 == 2) or (i == k)) %>  </div> </br><% end %>
+      <% i = i + 1 %>
+    <% end %>
     </div>
-  -->
-</div>
-</div>
+  </div>
 </div>

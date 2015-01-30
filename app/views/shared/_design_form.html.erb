@@ -1,45 +1,86 @@
 <%= form_for([@designer, @designer.designs.build], :html => { :multipart => true }) do |f| %>
+<div class = "row">
+  <div class="col-md-3 col-ms-3">
 
-<div class="field">
-  <%= f.label :name %><br>
-  <%= f.text_field :name %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label "style" %><br>
+      <%= f.select(:style, options_for_select(
+      [['欧式','欧式'],['中式','中式'],['日式','日式'],['韩式','韩式'],['古典','古典'],['现代','现代'],['简约','简约'],['地中海','地中海'],['宜家','宜家']] )) %>
+    </div>
+
+    <div class="field">
+      <%= f.label "household" %><br>
+      <%= f.select(:household, options_for_select(
+      [['一居','一居'],['两居','两居'],['三居','三居'],['四居','四居'],['小户型','小户型'],
+      ['大户型','大户型'],['别墅','别墅'],['复式','复式'],['loft','loft'],['越层','越层'],['阁楼','阁楼'],['工装','工装']] )) %>
+    </div>
+
+    <div class="field">
+      <%= f.label "size" %><br>
+      <%= f.select(:stage, options_for_select(
+      [['50平米以下','<50m2'],['50-60平米','50-60m2'],['60-90平米','60-90m2'],['90-120平米','90-120m2'],['大于120平米','>120m2']])) %>
+    </div>
+
+    <div class="field">
+      <%= f.label "描述" %><br>
+      <%= f.text_field :author %>
+    </div>
+
+    <div class="field">
+      <p> 项目地址：上海  浦东新区 龙阳路 </p>
+    </div>
+
+    <div class="field">
+      <%= f.label "原始尺寸图" %><br>
+      <%= f.file_field :pic %>
+    </div>
+
+    <div class="field">
+      <%= f.label "户型方案图" %><br>
+      <%= file_field_tag "plane_images[]", :class=>"preview_images", type: :file, multiple: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label "三维图" %><br>
+      <%= file_field_tag "stereo_images[]", :class=>"preview_images", type: :file, multiple: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label "三维效果图" %><br>
+      <%= file_field_tag "stereo_render_images[]", :class=>"preview_images", type: :file, multiple: true %>
+    </div>
+  </div>
+
+  <div class="col-md-9 col-ms-9">
+    <div class="placeholder_media">
+      <p class="uploadHouseImg"><%= image_tag("uploadCaseImg.jpg") %></p>
+      <p>  <span class="uploadHouseText"><a href="#">原始尺寸图上传</a></span></p>
+    </div>
+
+    <div class="houseWork">
+      <output id="preview_list"></output>
+      <p class="uploadHouseImg"><%= image_tag("uploadCaseImg.jpg") %>
+        <span class="uploadHouseText"><a href="#">户型方案图</a></span>
+      </p>
+    </div>
+
+    <div class="houseWork">
+      <p class="uploadHouseImg"><%= image_tag("uploadCaseImg.jpg") %>
+        <span class="uploadHouseText"><a href="#">三维图</a></span></p>
+    </div>
+
+    <div class="houseWork">
+      <p class="uploadHouseImg"><%= image_tag("uploadCaseImg.jpg") %>
+        <span class="uploadHouseText"><a href="#">三维渲染图</a></span></p>
+    </div>
+  </div>
+
 </div>
-
-<div class="field">
-  <%= f.label "style" %><br>
-  <%= f.select(:style, options_for_select(
-  [['欧式','欧式'],['中式','中式'],['日式','日式'],['韩式','韩式'],['古典','古典'],['现代','现代'],['简约','简约'],['地中海','地中海'],['宜家','宜家']] )) %>
-</div>
-
-<div class="field">
-  <%= f.label "household" %><br>
-  <%= f.select(:household, options_for_select(
-  [['一居','一居'],['两居','两居'],['三居','三居'],['四居','四居'],['小户型','小户型'],
-  ['大户型','大户型'],['别墅','别墅'],['复式','复式'],['loft','loft'],['越层','越层'],['阁楼','阁楼'],['工装','工装']] )) %>
-</div>
-
-<div class="field">
-  <%= f.label "size" %><br>
-  <%= f.select(:stage, options_for_select(
-  [['50平米以下','<50m2'],['50-60平米','50-60m2'],['60-90平米','60-90m2'],['90-120平米','90-120m2'],['大于120平米','>120m2']])) %>
-</div>
-
-<div class="field">
-  <%= f.label :author %><br>
-  <%= f.text_field :author %>
-</div>
-<div class="field">
-  <%= f.label "平面图" %><br>
-  <%= f.file_field :pic %>
-
-</div>
-
-<div class="field">
-  <%= f.label "效果图" %><br>
-  <%= file_field_tag "images[]", :class=>"preview_images", type: :file, multiple: true %>
-</div>
-<output id="preview_list"></output>
-
 <div class="actions">
   <%= f.submit %>
 </div>

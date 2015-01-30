@@ -1,10 +1,11 @@
 <!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
   <div class="modal-dialog">
     <div id="login-widget" class="panel" >
       <%= form_tag controller: "sessions", action: "create", method: "get", class: "form-horizontal" do %>
       <div class="panel-heading text-center">
-        <h5 class="text-uppercase"><strong>Login to your account</strong></h5>
+        <h3><strong>Sign In</strong></h3>
+        <p class="text-right">No account yet?<i class="fa fa-graduation-cap"></i><%= link_to("Sign up",new_designer_path) %> </p>
       </div>
       <div class="panel-body">
         <label for="login-email">User name</label>

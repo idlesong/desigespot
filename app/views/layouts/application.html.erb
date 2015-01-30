@@ -2,79 +2,514 @@
 <html>
 <head>
   <title>Zijiamei</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--- This should placed first off all other scripts -->
+  <!-- Fonts -->
+
 </head>
 <body>
+    <div id="wrapper">
 
-  <!-- Fixed navbar -->
-  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#"><i class="fa fa-bullhorn"></i>设计师</a>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href=<%=designs_path%>>设计案例</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">户型方案</a></li>
-              <li><a href="#">风格方案</a></li>
-              <li><a href="#">区域方案</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">其他分类</li>
-              <li><a href="#">原创案例</a></li>
-              <li><a href="#">灵感案例</a></li>
-            </ul>
-          </li>
-          <li><a href=<%=designers_path %>>设计师</a></li>
-          <li><a href=<%=topics_path %>>社区</a></li>
-          <li><a href=<%=products_path %>>产品助手</a></li>
-          <% if current_user %>
-          <li>
-            <a href=<%=admin_url %> > <%= image_tag(current_user.avatar.url(:icon)) %><%= current_user.name %>  </a>
-          </li>
-          <li>
-            <%= link_to("退出", logout_url, :method => :delete)%>
-          </li>
-          <% else %>
-          <li>
-            <!-- Button trigger modal -->
-            <a type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#loginModal">
-              登录
-            </a>
-          </li>
-          <li>
-            <%= link_to('注册', new_designer_url) %>
-          </li>
-          <% end %>
+      <div class="top_wrapper">
+        <div class="top-bar">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-7">
+                <div class="call-us top-bar-block">
+                  <i class="fa fa-mobile-phone"></i>
+                  <span>
+                    Call us at 1- 888 - 999
+                  </span>
+                </div>
+                <div class="mail-us top-bar-block">
+
+                  <% if current_user %>
+
+                    <span>
+                      <a href= <%= admin_url %> > <%= image_tag(current_user.avatar.url(:icon)) %><%= current_user.name %>  </a>
+
+                      <%= link_to("[退出]",logout_url, :method => :delete) %>
+                    </span>
+
+                    <% else %>
+                    <span>
+                      <a href= <%= login_url %> > 登录 </a> |
+                      <a href= <%= new_designer_url %> > 注册 </a>
+                    </span>
+                    <% end %>
+
+                </div>
+
+              </div>
+              <div class="col-sm-5">
+
+                <!-- Search Box -->
+                <div class="searchbox">
+                  <form action="http://www.activeaxon.com/html/kanzi/#" method="get">
+                    <input type="text" class="searchbox-inputtext" id="searchbox-inputtext" name="s" placeholder="Search..">
+                    <label class="searchbox-icon" for="searchbox-inputtext"></label>
+                    <input type="submit" class="searchbox-submit" value="Search">
+                  </form>
+                </div>
+                <!-- //Search Box// -->
+                <div class="social-icons">
+                  <ul>
+                    <li>
+                      <a href="#"><i class="fa fa-apple fa-lg"></i></a>
+                    </li>
+                    <li>
+                      <a href="#" target="_blank" class="social-media-icon twitter-icon" data-original-title="twitter">twitter</a>
+                    </li>
+                    <li>
+                      <a href="#" target="_blank" class="social-media-icon googleplus-icon" data-original-title="googleplus">googleplus</a>
+                    </li>
+                    <li>
+                      <a href="#" target="_blank" class="social-media-icon pininterest-icon" data-original-title="pininterest">pininterest</a>
+                    </li>
+                    <li>
+                      <a href="#" target="_blank" class="social-media-icon dribble-icon" data-original-title="dribble">dribble</a>
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Header -->
+        <header id="header">
+          <div class="container">
+
+            <div class="row header">
+
+              <!-- Logo -->
+              <div class="col-xs-2 logo">
+                <a href="/admin" >
+                  <%=image_tag("main_logo.png") %>
+                </a>
+              </div>
+              <!-- //Logo// -->
 
 
+              <!-- Navigation File -->
+              <div class="col-md-10">
 
-        </li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</div>
+                <!-- Mobile Button Menu -->
+                <div class="mobile-menu-button">
+                  <i class="fa fa-list-ul"></i>
+                </div>
+                <!-- //Mobile Button Menu// -->
 
-<!-- login modal -->
-<%= render 'shared/login_form', designer: @designer %>
+                <nav>
+                  <ul class="navigation">
+                    <li>
+                      <a href="#">
+                        <span class="label-nav">
+                          Home
+                        </span>
+                        <span class="label-nav-sub" data-hover="Examples">
+                          Examples
+                        </span>
+                      </a>
 
-<div class="container theme-showcase" role="main">
+                    </li>
+                    <li>
+                      <a href=<%= designs_path %>>
+                        <span class="label-nav">
+                          Designs
+                        </span>
+                        <span class="label-nav-sub" data-hover="Layouts">
+                          Layouts
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href=<%= designers_path %>>
+                        <span class="label-nav">
+                          Designers
+                        </span>
+                        <span class="label-nav-sub" data-hover="The News">
+                          the news
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href=<%= topics_path %>>
+                        <span class="label-nav">
+                          Discuss
+                        </span>
+                        <span class="label-nav-sub" data-hover="Our Work">
+                          Our Work
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href=<%= products_path %>>
+                        <span class="label-nav">
+                          Resources
+                        </span>
+                        <span class="label-nav-sub" data-hover="Elements">
+                          Elements
+                        </span>
+                      </a>
+                      <ul style="z-index: 1;">
+                        <li>
+                          <a href="#">Products</a>
+                        </li>
+                        <li>
+                          <a href="#">Websites</a>
+                        </li>
+                        <li>
+                          <a href="#">Stores</a>
+                        </li>
+                        <li>
+                          <a href="#">Guides</a>
+                        </li>
+                        <li>
+                          <a href="#">Books</a>
+                        </li>
 
-  <%= yield %>
+                      </ul>
+                    </li>
+                  </ul>
 
-</div> <!-- /container -->
+                </nav>
 
+                <!-- Mobile Nav. Container -->
+                <ul class="mobile-nav">
+                  <li class="responsive-searchbox">
+                    <!-- Responsive Nave -->
+                    <form action="http://www.activeaxon.com/html/kanzi/#" method="get">
+                      <input type="text" class="searchbox-inputtext" id="searchbox-inputtext-mobile" name="s">
+                      <button class="icon-search"></button>
+                    </form>
+                    <!-- //Responsive Nave// -->
+                  </li>
+
+                  <li>
+                    <a href="http://www.activeaxon.com/html/kanzi/home-version1.html">
+                      <span class="label-nav">
+                        Home
+                      </span>
+                      <span class="label-nav-sub" data-hover="Examples">
+                        Examples
+                      </span>
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/home-version1.html">Home version 1</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/home-version2.html">Home version 2</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/home-version3.html">Home version 3</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/home-version4.html">Home Version 4</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/home-version5.html">Home Version 5</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="http://www.activeaxon.com/html/kanzi/about-us.html">
+                      <span class="label-nav">
+                        Pages
+                      </span>
+                      <span class="label-nav-sub" data-hover="Layouts">
+                        Layouts
+                      </span>
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/about-us.html"> About </a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/services.html"> Services </a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/team.html"> Our Team </a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/sidebar-navigation.html"> Sidebar Navigation </a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/faq.html"> FAQ </a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/contact.html">Contact Us </a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/sign-up.html">Sign Up </a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/sign-in.html">Sign In</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/404.html"> 404 </a>
+                      </li>
+
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="http://www.activeaxon.com/html/kanzi/blog.html">
+                      <span class="label-nav">
+                        Blog
+                      </span>
+                      <span class="label-nav-sub" data-hover="The News">
+                        the news
+                      </span>
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/blog.html">Blog</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/blog-masonry.html">Blog Masonry</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/blog-single.html">Blog Single</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="http://www.activeaxon.com/html/kanzi/portfolio-two-columns.html">
+                      <span class="label-nav">
+                        Portfolio
+                      </span>
+                      <span class="label-nav-sub" data-hover="Our Work">
+                        Our Work
+                      </span>
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/portfolio-two-columns.html">2 Column</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/portfolio-three-columns.html">3 Column</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/portfolio-four-columns.html">4 Column</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/portfolio-single.html">Single</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="http://www.activeaxon.com/html/kanzi/elements.html">
+                      <span class="label-nav">
+                        Shortcodes
+                      </span>
+                      <span class="label-nav-sub" data-hover="Elements">
+                        Elements
+                      </span>
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/accordions.html">Accordions &amp; Toggles</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/columns.html">Columns</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/elements.html">Elements</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/full-block-content.html">Full Block Content</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/icon-boxes.html">Icon Boxes</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/icons.html">Icons</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/price-tables.html">Pricing Tables</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/tabs.html">Tabs</a>
+                      </li>
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/testimonials.html">Testimonials</a>
+                      </li>
+
+                      <li>
+                        <a href="http://www.activeaxon.com/html/kanzi/typography.html">Typography</a>
+                      </li>
+
+                    </ul>
+                  </li>
+                </ul>
+                <!-- //Mobile Nav. Container// -->
+              </div>
+              <!-- Nav -->
+
+            </div>
+          </div>
+        </header>
+
+        <div class="top-title-wrapper">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <div class="page-info">
+                  <h1 class="h1-page-title">Sign Up</h1>
+
+
+                  <!-- BreadCrumb -->
+                  <div class="breadcrumb-container">
+                    <ol class="breadcrumb">
+                      <li>
+                        <a href="">Home</a>
+                      </li>
+                      <li class="active">Sign Up Page</li>
+                    </ol>
+                  </div>
+                  <!-- BreadCrumb -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="body-wrapper">
+          <!-- login modal -->
+          <%= render 'shared/login_form', designer: @designer %>
+          <div class="container theme-showcase" role="main">
+            <%= yield %>
+          </div> <!-- /container -->
+        </div>
+
+        <footer>
+          <div class="footer">
+
+            <div class="container">
+              <div class="footer-wrapper">
+                <div class="row">
+
+
+                  <!-- Footer Col. -->
+                  <div class="col-md-3 col-sm-3 footer-col">
+                    <div class="footer-content">
+                      <div class="footer-content-logo">
+                        <!-- <img src="./Kanzi HTML5 Template_files/main_logo.png" alt=""> -->
+                        <%= image_tag("main_logo.png") %>
+                      </div>
+                      <div class="footer-content-text">
+                        <p>Zijiamei hope to be the designer's favorite home. You just focus on your designs, we will
+                          take care left. </p>
+
+                        <p>With the help of designer assitant, you wil have best showcase of your design. You will have
+                          more free 3D designs.  </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- //Footer Col.// -->
+
+
+                      <!-- Footer Col. -->
+                      <div class="col-md-3 col-sm-3 footer-col">
+                        <div class="footer-title">
+                          Recent Tweets
+                        </div>
+                        <div class="footer-content footer-recent-tweets-container">
+                          <ul class="tweetList footer-recent-tweets">
+                            <li class="tweet_content item">
+                              <p>Notice: We will bring the our first alpha release in few comming days. </p>
+                              <p class="timestamp">2 days ago</p>
+                            </li>
+                            <li class="tweet_content item">
+                              <p>Newest Blog Awesome post: Stacking Text and Icons <a href="http://t.co/1qRP8K1wjG">Check it</a></p>
+                              <p class="timestamp">4 days ago</p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <!-- //Footer Col.// -->
+
+
+                      <!-- Footer Col. -->
+                      <div class="col-md-3 col-sm-3 footer-col">
+                        <div class="footer-title">
+                          Guides
+                        </div>
+                        <div class="footer-content">
+                          <ul class="footer-category-list">
+                            <li>
+                              <a href="">Designer guide</a>
+                            </li>
+                            <li>
+                              <a href="">User guide</a>
+                            </li>
+                            <li>
+                              <a href="">Rules center</a>
+                            </li>
+                            <li>
+                              <a href="">Andvanced skills</a>
+                            </li>
+                            <li>
+                              <a href="">Online FAQ</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <!-- //Footer Col.// -->
+
+
+                      <!-- Footer Col. -->
+                      <div class="col-md-3 col-sm-3 footer-col">
+                        <div class="footer-title">
+                          Photostream
+                        </div>
+                        <div class="footer-content">
+                          <ul class="footer-category-list">
+                            <li>
+                              <a href="">Designer guide</a>
+                            </li>
+                            <li>
+                              <a href="">User guide</a>
+                            </li>
+                            <li>
+                              <a href="">Rules center</a>
+                            </li>
+                            <li>
+                              <a href="">Andvanced skills</a>
+                            </li>
+                            <li>
+                              <a href="">To be top designer</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <!-- //Footer Col.// -->
+
+                    </div>
+                  </div>
+
+                </div>
+                <div class="copyright">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12 center-text">
+                        <div class="copyright-text">© 2015 Zijiamei.com | All rights reserved By <a href="http://www.zijiamei.com/" target="_blank">Zijiamei</a></div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </footer>
+
+          </div><!-- wrapper end -->
 
 </body>
 </html>

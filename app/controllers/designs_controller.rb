@@ -40,9 +40,19 @@ class DesignsController < ApplicationController
     respond_to do |format|
       if @design.save
 
-        if params[:images]
-          params[:images].each { |image|
-            @design.photos.create(image: image)
+        if params[:plane_images]
+          params[:plane_images].each { |image|
+            @design.photos.create(image: image, description: "plane_images")
+          }
+        end
+        if params[:stereo_images]
+          params[:stereo_images].each { |image|
+            @design.photos.create(image: image, description: "stereo_images")
+          }
+        end
+        if params[:stereo_render_images]
+          params[:stereo_render_images].each { |image|
+            @design.photos.create(image: image, description: "stereo_render_images")
           }
         end
 
@@ -59,10 +69,22 @@ class DesignsController < ApplicationController
   # PATCH/PUT /designs/1.json
   def update
     respond_to do |format|
-      if params[:images]
-        params[:images].each { |image|
-          @design.photos.create(image: image)
-          render :text => @design.photos.inspect
+      if params[:plane_images]
+        params[:plane_images].each { |image|
+          @design.photos.create(image: image, description: "plane_images")
+          #render :text => @design.photos.inspect
+        }
+      end
+      if params[:stereo_images]
+        params[:stereo_images].each { |image|
+          @design.photos.create(image: image, description: "stereo_images")
+          #render :text => @design.photos.inspect
+        }
+      end
+      if params[:stereo_render_images]
+        params[:stereo_render_images].each { |image|
+          @design.photos.create(image: image, description: "stereo_render_images")
+          #render :text => @design.photos.inspect
         }
       end
 

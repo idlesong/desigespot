@@ -21,34 +21,34 @@
       <p id="notice"><%= flash[:alert] %></p> <% end %>
   <!-- Modal -->
 
-  <div class="modal-dialog">
-    <div id="login-widget" class="panel" >
-      <%= form_tag :class=>"form-horizontal" do %>
-        <div class="panel-heading text-center">
-          <h5 class="text-uppercase"><strong>Login to your account</strong></h5>
+<div class="modal-dialog ">
+  <div id="login-widget" class="panel classic-form" >
+    <%= form_tag :class=>"form-horizontal" do %>
+      <div class="panel-heading text-center">
+        <h3><strong>Sign In</strong></h3>
+      </div>
+      <div class="panel-body">
+        <label for="login-email">User name</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <!-- <input id="login-email" type="text" class="form-control input-lg" name="email" value="" placeholder="email"> -->
+          <%= text_field_tag :name, params[:name], :class => "form-control input-lg", :placeholder=>"name"%>
         </div>
-        <div class="panel-body">
-          <label for="login-email">User name</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <!-- <input id="login-email" type="text" class="form-control input-lg" name="email" value="" placeholder="email"> -->
-            <%= text_field_tag :name, params[:name], :class => "form-control input-lg", :placeholder=>"name"%>
-          </div>
-          <label for="login-email">Password</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <!-- <input id="login-password" type="password" class="form-control input-lg" name="password" placeholder="password"> -->
-            <%= password_field_tag :password, params[:password], :class=>"form-control input-lg", :placeholder=>"password" %>
-          </div>
+        <label for="login-email">Password</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <!-- <input id="login-password" type="password" class="form-control input-lg" name="password" placeholder="password"> -->
+          <%= password_field_tag :password, params[:password], :class=>"form-control input-lg", :placeholder=>"password" %>
         </div>
-        <div class="panel-footer text-center">
-          <div class="login-btn">
-            <!-- <a href="#" class="btn btn-ui btn-lg btn-block mrg-btm-10"><i class="fa fa-play-circle"></i> Sign In</a> -->
-            <%= submit_tag "Login", :class=>"btn btn-ui btn-lg btn-block mrg-btm-10" %>
-            <a href="#"><small>Forgot Username or Password?</small></a>
-          </div>
-          <a href="#" class="facebook"><i class="fa fa-lg fa-facebook-square"></i> Login with WeChat or QQ</a>
+      </div>
+      <div class=" text-center">
+        <div class="login-btn">
+          <!-- <a href="#" class="btn btn-ui btn-lg btn-block mrg-btm-10"><i class="fa fa-play-circle"></i> Sign In</a> -->
+          <%= submit_tag "Sing In", :class=>"btn btn-ui btn-lg btn-block mrg-btm-10" %>
+          <a href="#"><small>Forgot Username or Password?</small></a>
         </div>
-      <% end %>
-    </div>
+        <a href="#" class="facebook"><i class="fa fa-lg fa-facebook-square"></i> Login with WeChat or QQ</a>
+      </div>
+    <% end %>
   </div>
+</div>

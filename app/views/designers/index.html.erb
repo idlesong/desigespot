@@ -1,17 +1,17 @@
-<ul class="list-group">
+<!-- <ul class="list-group"> -->
 
 <% @designers.each do |designer| %>
-<li class="list-group-item">
+<!-- <li class="list-group-item"> -->
   <div class="row">
-    <div class="col-xs-6 col-md-2">
-      <div class="thumbnail">
+    <div class="col-sm-2 col-md-2">
+      <div>
         <%= link_to  designer do %>
-          <%= image_tag designer.avatar.url(:medium) %>
+          <%= image_tag(designer.avatar.url(:thumb), :class => "img-circle") %>
         <% end %>
       </div>
     </div>
 
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-4 col-md-4">
         <h4><%= link_to(designer.name,designer_path(designer)) %> 已认证</h4>
         <p>擅长空间-<%= designer.prefer_household %></p>
         <p>擅长风格-<%= designer.prefer_style %></p>
@@ -27,16 +27,26 @@
           url = design.photos.first.image.url
         end
       %>
-      <div class="col-xs-6 col-md-2">
-        <div class="thumbnail">
-          <%= link_to  design do %>
-          <%= image_tag(url) %>
-          <% end %>
+
+      <div class="col-md-2 col-sm-2">
+        <div class="feature animated" data-animtype="fadeInLeft"
+        data-animrepeat="0"
+        data-speed="1s"
+        data-delay="0s">
+          <div class="feature-image img-overlay">
+            <!-- <img src="images/placeholders/office-image-placeholder.jpg" alt=""/> -->
+            <%= image_tag(url) %>
+            <div class="item-img-overlay">
+              <a class="portfolio-zoom fa fa-plus" href= <%= design_path(design) %>
+              data-rel="prettyPhoto[portfolio]" title="Title goes here"></a>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
 
-  </div>
-</li>
+    </div>
+<!-- </li> -->
+  <div class="divider strip-3"> </div>
 <% end %>
-</ul>
+<!-- </ul> -->

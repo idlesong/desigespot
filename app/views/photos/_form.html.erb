@@ -10,11 +10,13 @@
       </ul>
     </div>
   <% end %>
+  <div class="feature-image img-overlay">
+    <%= image_tag(@photo.image.url) %>
+  </div>
 
   <div class="field">
     <%= f.label :image %><br>
     <%= f.file_field :image %>
-    <!-- <%= image_tag(@photo.image.url,:class=>"preview_thumb") %> -->
   </div>
 
   <div class="field">
