@@ -15,30 +15,30 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-
-$(document).ready(function() {
-  //Add preview function for photo upload
-  alert("preview prepare");
-  //$("#uploadDesignModal").css("z-index", "1500");
-
-  $('.preview_images').on('change', function(event) {
-    alert("preview");
-    var files = event.target.files;
-    var image = files[0];
-    var reader = new FileReader();
-    reader.onload = function(file) {
-      var img = new Image();
-      console.log(file);
-      img.src = file.target.result;
-
-      var span = $('<span />').html(img);
-
-      $('#preview_list').append(span);
-      $("#preview_list img").addClass('preview_thumb');
-    }
-
-    reader.readAsDataURL(image);
-    console.log(files);
-  });
-
-});
+// 
+// $(document).ready(function() {
+//   //Add preview function for photo upload
+//   alert("preview prepare");
+//   //$("#uploadDesignModal").css("z-index", "1500");
+//
+//   $('.preview_images').on('change', function(event) {
+//     alert("preview");
+//     var files = event.target.files;
+//     var image = files[0];
+//     var reader = new FileReader();
+//     reader.onload = function(file) {
+//       var img = new Image();
+//       console.log(file);
+//       img.src = file.target.result;
+//
+//       var span = $('<span />').html(img);
+//
+//       $('#preview_list').append(span);
+//       $("#preview_list img").addClass('preview_thumb');
+//     }
+//
+//     reader.readAsDataURL(image);
+//     console.log(files);
+//   });
+//
+// });
