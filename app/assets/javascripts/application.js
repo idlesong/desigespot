@@ -15,7 +15,7 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-// 
+//
 // $(document).ready(function() {
 //   //Add preview function for photo upload
 //   alert("preview prepare");
