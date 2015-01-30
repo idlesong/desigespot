@@ -28,7 +28,7 @@
  - reply with username
  - topic:follow, like, favorite (followed_user_ids,followed_user_counts)
  - 支持Morkdown topic and reply
-1. 设计师的收藏夹（灵感图集，除了设计师的灵感图集，还应该有设计的讲究之类） 
+1. 设计师的收藏夹（灵感图集，除了设计师的灵感图集，还应该有设计的讲究之类）
 
 
 ### bugs
@@ -38,3 +38,4 @@
 1. new topic 未隐藏designer_id
 1. form_for的输入框都太小，界面美化
 1. current_user 经常与 @designer混用
+1. test heroku
