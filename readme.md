@@ -38,4 +38,4 @@
 1. new topic 未隐藏designer_id
 1. form_for的输入框都太小，界面美化
 1. current_user 经常与 @designer混用
-1. test heroku
+1. test
