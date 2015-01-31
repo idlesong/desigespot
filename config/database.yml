@@ -26,4 +26,4 @@ production:
   database: db/production.postgresql
 
 # Note: replace sqlite3 with postgresql to us pg
-# Note: don't forget change gem
+# Note: don't forget change gem, and run bundle install
